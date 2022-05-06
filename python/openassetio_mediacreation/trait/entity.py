@@ -13,14 +13,11 @@ from openassetio import Trait
 class LocatableContentTrait(Trait):
     """
     This trait characterizes an entity whose data is persisted externally
-    to the API - either in a file on disk or other storage accessible
-    via a URL.
+    to the API through data accessible via a valid URL.
 
     The `location` property holds the most applicable location of the
     entity's content for the current process environment - considering
-    platform, host, etc. Location is in the form of a file system path
-    unless the calling context's locale has the `usesUrls` trait. In
-    which case it is a URL.
+    platform, host, etc. Location is in the form of a URL.
     """
 
     kId = "locatableContent"
@@ -31,8 +28,8 @@ class LocatableContentTrait(Trait):
         """
         Sets the location of the entities external content.
 
-        This must be a filesystem path, unless the calling context's
-        `locale` has the `usesUrls` trait, then it must be an URL.
+        This must be a valid URL so special characters need to be
+        encoded.
         """
         if not isinstance(contentLocation, str):
             raise TypeError("contentLocation must be a string")
@@ -43,11 +40,7 @@ class LocatableContentTrait(Trait):
         Returns the location of the entities external content or None
         if this property has not been set.
 
-        By default, this is a filesystem path for broadest
-        compatibility.
-
-        If the calling context's `locale` has the `usesURLs` trait, then
-        it will be will be an URL.
+        This is a URL, and so special characters will be encoded.
         """
         value = self._specification.getTraitProperty(self.kId, self.__kLocation)
         if value is None:
