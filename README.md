@@ -27,7 +27,7 @@ from the `feature/181-coreCppBuild` branch to be available in your
 python environment.
 
 ```shell
-git clone https://github.com/TheFoundryVisionmongers/OpenAssetIO-MediaCreation
+git clone https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation
 cd OpenAssetIO-MediaCreation
 pip install .
 ```
