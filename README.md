@@ -22,9 +22,9 @@ Pending tasks:
 
 ## Installation
 
-Presently, this is somewhat manual, and requires `openassetio` built
-from the `feature/181-coreCppBuild` branch to be available in your
-python environment.
+Presently, this is somewhat manual, and requires your own build of
+`openassetio` `v1.0.0-alpha.1` to be available in your python
+environment.
 
 ```shell
 git clone https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation
