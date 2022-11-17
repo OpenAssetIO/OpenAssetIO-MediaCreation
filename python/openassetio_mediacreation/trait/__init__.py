@@ -11,10 +11,10 @@ to certain applications are grouped into modules by use.
 
 from typing import Union
 
-from openassetio import Trait
+from openassetio import TraitBase
 
 
-class TimelineTrait(Trait):
+class TimelineTrait(TraitBase):
     """
     This trait characterizes a collection of tracks that evaluate
     concurrently to form layers of references to media. Frequently used
@@ -25,7 +25,7 @@ class TimelineTrait(Trait):
     kId = "timeline"
 
 
-class TrackTrait(Trait):
+class TrackTrait(TraitBase):
     """
     This trait characterizes a lane or collection of media, arranged
     temporally such that only a single item in the collection is active
@@ -36,7 +36,7 @@ class TrackTrait(Trait):
     kId = "track"
 
 
-class ClipTrait(Trait):
+class ClipTrait(TraitBase):
     """
     This trait characterizes the use of some range of external media,
     commonly on a track or timeline. Frequently used in non-linear
@@ -56,13 +56,13 @@ class ClipTrait(Trait):
         """
         if not isinstance(name, str):
             raise TypeError("name must be a string")
-        self._specification.setTraitProperty(self.kId, self.__kName, name)
+        self._data.setTraitProperty(self.kId, self.__kName, name)
 
     def getName(self, defaultValue=None) -> Union[str, None]:
         """
         Returns the name of the clip or the defaultValue.
         """
-        value = self._specification.getTraitProperty(self.kId, self.__kName)
+        value = self._data.getTraitProperty(self.kId, self.__kName)
         if value is None:
             return defaultValue
         elif not isinstance(value, str):

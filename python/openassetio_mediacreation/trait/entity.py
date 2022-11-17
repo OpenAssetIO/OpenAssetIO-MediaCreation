@@ -7,10 +7,10 @@ characteristics of an entity for resolve or registration.
 
 from typing import Union
 
-from openassetio import Trait
+from openassetio import TraitBase
 
 
-class LocatableContentTrait(Trait):
+class LocatableContentTrait(TraitBase):
     """
     This trait characterizes an entity whose data is persisted externally
     to the API through data accessible via a valid URL.
@@ -33,7 +33,7 @@ class LocatableContentTrait(Trait):
         """
         if not isinstance(contentLocation, str):
             raise TypeError("contentLocation must be a string")
-        self._specification.setTraitProperty(self.kId, self.__kLocation, contentLocation)
+        self._data.setTraitProperty(self.kId, self.__kLocation, contentLocation)
 
     def getLocation(self, defaultValue=None) -> Union[str, None]:
         """
@@ -42,7 +42,7 @@ class LocatableContentTrait(Trait):
 
         This is a URL, and so special characters will be encoded.
         """
-        value = self._specification.getTraitProperty(self.kId, self.__kLocation)
+        value = self._data.getTraitProperty(self.kId, self.__kLocation)
         if value is None:
             return defaultValue
         elif not isinstance(value, str):

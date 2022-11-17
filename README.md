@@ -22,10 +22,6 @@ Pending tasks:
 
 ## Installation
 
-Presently, this is somewhat manual, and requires your own build of
-`openassetio` `v1.0.0-alpha.1` to be available in your python
-environment.
-
 ```shell
 git clone https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation
 cd OpenAssetIO-MediaCreation
@@ -34,8 +30,7 @@ pip install .
 
 ## Running the tests
 
-Assuming `openassetio` and `openassetio_mediacreation` packages are available in
-your python environment:
+To run the tests, after installing, simply run
 
 ```shell
 pytest
