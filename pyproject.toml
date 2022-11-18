@@ -1,3 +1,19 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2021-2022 The Foundry Visionmongers Ltd
+
+[project]
+name = "openassetio-mediacreation"
+version = "1.0.0a1"
+requires-python = ">=3.7"
+
+authors = [
+    { name = "Contributors to the OpenAssetIO project", email = "openassetio-discussion@lists.aswf.io" }
+]
+
+[project.urls]
+Source = "https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation"
+Issues = "https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues"
+
 [tool.pylint.messages_control]
 
 [tool.pylint.format]
