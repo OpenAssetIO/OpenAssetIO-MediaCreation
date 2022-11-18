@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright 2013-2022 The Foundry Visionmongers Ltd
 """
-Basic tests for common entity traits.
+Basic tests for common timeline traits.
 """
 
 # pylint: disable=missing-function-docstring, missing-class-docstring
@@ -16,36 +16,36 @@ from openassetio import TraitsData
 ## TimelineTrait
 ##
 
-from openassetio_mediacreation.trait import TimelineTrait
+from openassetio_mediacreation.traits.timeline import TimelineTrait
 
 
 class Test_TimelineTrait:
     def test_traitId(self):
-        assert TimelineTrait.kId == "timeline"
+        assert TimelineTrait.kId == "openassetio-mediacreation:timeline.Timeline"
 
 
 ##
 ## TrackTrait
 ##
 
-from openassetio_mediacreation.trait import TrackTrait
+from openassetio_mediacreation.traits.timeline import TrackTrait
 
 
 class Test_TrackTrait:
     def test_traitId(self):
-        assert TrackTrait.kId == "track"
+        assert TrackTrait.kId == "openassetio-mediacreation:timeline.Track"
 
 
 ##
 ## ClipTrait
 ##
 
-from openassetio_mediacreation.trait import ClipTrait
+from openassetio_mediacreation.traits.timeline import ClipTrait
 
 
 class Test_ClipTrait:
     def test_traitId(self):
-        assert ClipTrait.kId == "clip"
+        assert ClipTrait.kId == "openassetio-mediacreation:timeline.Clip"
 
 
 class Test_ClipTrait_name:
@@ -77,7 +77,7 @@ class Test_ClipTrait_name:
         a_clip_traitsData.setTraitProperty(ClipTrait.kId, "name", 123)
         with pytest.raises(TypeError) as err:
             assert ClipTrait(a_clip_traitsData).getName()
-        assert str(err.value) == "Invalid stored value type: '123' [int]"
+        assert str(err.value) == "Invalid stored value type: 'int' should be 'str'."
 
     def test_when_name_property_has_wrong_value_type_and_default_provided_then_returns_default(
         self, a_clip_traitsData
@@ -107,7 +107,7 @@ class Test_ClipTrait_setName:
         trait = ClipTrait(a_clip_traitsData)
         with pytest.raises(TypeError) as err:
             trait.setName(123)
-        assert str(err.value) == "name must be a string"
+        assert str(err.value) == "name must be a 'str'."
 
 
 @pytest.fixture
@@ -117,4 +117,4 @@ def an_empty_traitsData():
 
 @pytest.fixture
 def a_clip_traitsData():
-    return TraitsData({"clip"})
+    return TraitsData({"openassetio-mediacreation:timeline.Clip"})

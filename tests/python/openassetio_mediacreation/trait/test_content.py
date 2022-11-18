@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright 2013-2022 The Foundry Visionmongers Ltd
 """
-Basic tests for entity traits.
+Basic tests for content traits.
 """
 
 # pylint: disable=missing-function-docstring, missing-class-docstring
@@ -15,12 +15,12 @@ from openassetio import TraitsData
 ##
 ## LocatableContentTrait
 ##
-from openassetio_mediacreation.trait.entity import LocatableContentTrait
+from openassetio_mediacreation.traits.content import LocatableContentTrait
 
 
 class Test_LocatableContentTrait:
     def test_traitId(self):
-        assert LocatableContentTrait.kId == "locatableContent"
+        assert LocatableContentTrait.kId == "openassetio-mediacreation:content.LocatableContent"
 
 
 class Test_LocatableContentTrait_location:
@@ -40,9 +40,7 @@ class Test_LocatableContentTrait_location:
         )
         assert LocatableContentTrait(a_locatableContent_traitsData).getLocation() == expected
 
-    def test_when_location_property_not_set_then_returns_None(
-        self, a_locatableContent_traitsData
-    ):
+    def test_when_location_property_not_set_then_returns_None(self, a_locatableContent_traitsData):
         assert LocatableContentTrait(a_locatableContent_traitsData).getLocation() is None
 
     def test_when_location_property_is_not_set_and_default_provided_then_returns_default(
@@ -57,19 +55,15 @@ class Test_LocatableContentTrait_location:
     def test_when_location_property_has_wrong_type_and_no_default_provided_then_raises_TypeError(
         self, a_locatableContent_traitsData
     ):
-        a_locatableContent_traitsData.setTraitProperty(
-            LocatableContentTrait.kId, "location", 123
-        )
+        a_locatableContent_traitsData.setTraitProperty(LocatableContentTrait.kId, "location", 123)
         with pytest.raises(TypeError) as err:
             assert LocatableContentTrait(a_locatableContent_traitsData).getLocation()
-        assert str(err.value) == "Invalid stored value type: '123' [int]"
+        assert str(err.value) == "Invalid stored value type: 'int' should be 'str'."
 
     def test_when_location_property_has_wrong_value_type_and_default_provided_then_returns_default(
         self, a_locatableContent_traitsData
     ):
-        a_locatableContent_traitsData.setTraitProperty(
-            LocatableContentTrait.kId, "location", 123
-        )
+        a_locatableContent_traitsData.setTraitProperty(LocatableContentTrait.kId, "location", 123)
         trait = LocatableContentTrait(a_locatableContent_traitsData)
         default = "a default location"
         assert trait.getLocation(defaultValue=default) == default
@@ -98,7 +92,7 @@ class Test_LocatableContentTrait_setLocation:
         trait = LocatableContentTrait(a_locatableContent_traitsData)
         with pytest.raises(TypeError) as err:
             trait.setLocation(123)
-        assert str(err.value) == "contentLocation must be a string"
+        assert str(err.value) == "location must be a 'str'."
 
 
 @pytest.fixture
@@ -108,4 +102,4 @@ def an_empty_traitsData():
 
 @pytest.fixture
 def a_locatableContent_traitsData():
-    return TraitsData({"locatableContent"})
+    return TraitsData({"openassetio-mediacreation:content.LocatableContent"})
