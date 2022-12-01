@@ -15,8 +15,9 @@ These initial incarnations of traits/specifications serve as
 illustrative examples to facilitate discussion and experimentation.
 Pending tasks:
 
-- [ ] Define JSON schema to represent traits/specifications.
-- [ ] Auto-generate Python, CPP and C classes from JSON.
+- [x] Define YAML schema to represent traits/specifications.
+- [x] Auto-generate Python classes from YAML
+- [ ] Auto-generate CPP and C classes from YAML.
 - [ ] Extend library to cover common post-production entities and
       locales.
 
@@ -27,6 +28,9 @@ git clone https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation
 cd OpenAssetIO-MediaCreation
 pip install .
 ```
+
+During installation, [openassetio-traitgen](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen)
+will be used to generate trait implementations based on [traits.yml](traits.yml)
 
 ## Running the tests
 

@@ -1,0 +1,63 @@
+# yaml-language-server: $schema=../../python/openassetio_traitgen/schema.json
+# yamllint disable-line rule:document-start
+package: openassetio-mediacreation
+
+description: Well-known Traits and Specifications for use in OpenAssetIO
+  hosts and managers.
+
+traits:
+  timeline:
+    description: Traits related to timelines.
+    members:
+      Timeline:
+        description: >
+          This trait characterizes a collection of tracks that evaluate
+          concurrently to form layers of references to media. Frequently
+          used in non-linear editing environments such as Video and
+          Audio post production tools.
+
+      Track:
+        description: >
+          This trait characterizes a lane or collection of media,
+          arranged temporally such that only a single item in the
+          collection is active at any given time. Frequently used in
+          non-linear editing environments such as Video and Audio post
+          production tools.
+
+      Clip:
+        description: >
+          This trait characterizes the use of some range of external
+          media, commonly on a track or timeline. Frequently used in
+          non-linear editing environments such as Video and Audio
+          production tools.
+
+
+          TODO(TC) Define any additional properties, and companion
+          traits such as 'frameRange' and 'handles'.
+        properties:
+          name:
+            type: string
+            description: The name of the clip.
+  content:
+    description: Traits related to abstract content.
+    members:
+      LocatableContent:
+        description: >
+          This trait characterizes an entity whose data is persisted
+          externally to the API through data accessible via a valid
+          URL.
+
+
+          The `location` property holds the most applicable location
+          of the entity's content for the current process environment
+          - considering platform, host, etc. Location is in the form
+          of a URL.
+        properties:
+          location:
+            type: string
+            description: >
+              The location of the entities external content.
+
+
+              This must be a valid URL so special characters need to
+              be encoded.
