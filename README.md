@@ -9,7 +9,7 @@ Included are several well-known Traits and Specifications for use in
 OpenAssetIO hosts and managers. For more information on this mechanism,
 see the [OpenAssetIO docs](https://thefoundryvisionmongers.github.io/OpenAssetIO/).
 
-MediaCreation is a fully generated component,
+MediaCreation is an automatically generated Python package,
 [openassetio-traitgen](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen)
 is used to generate trait implementations based on [traits.yml](traits.yml)
 
@@ -28,11 +28,8 @@ Pending tasks:
 ## Installation
 
 ```shell
-pip install openassetio-mediacreation
+python -m pip install openassetio-mediacreation
 ```
-
-During installation, [openassetio-traitgen](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen)
-will be used to generate trait implementations based on [traits.yml](traits.yml)
 
 ## Running the tests
 

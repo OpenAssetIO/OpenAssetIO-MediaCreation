@@ -18,12 +18,41 @@ authors = [
     { name = "Contributors to the OpenAssetIO project", email = "openassetio-discussion@lists.aswf.io" }
 ]
 
+keywords = ["openassetio", "mediacreation", "trait"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.readme]
+text = """\
+# OpenAssetIO-MediaCreation
+
+OpenAssetIO extensions for use in Media Creation
+
+> Note: This repository is currently in a pre-alpha state, and so should
+> not be used for any production critical applications.
+
+Included are several well-known Traits and Specifications for use in
+OpenAssetIO hosts and managers. For more information on this mechanism,
+see the [OpenAssetIO docs](https://thefoundryvisionmongers.github.io/OpenAssetIO/).
+"""
+content-type = "text/markdown"
+
 dependencies = ["openassetio>=1.0.0a6"]
 
 [tool.setuptools]
 packages = ["openassetio_mediacreation"]
 
 [project.urls]
+OpenAssetIO = "https://github.com/OpenAssetIO/OpenAssetIO"
 Source = "https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation"
 Issues = "https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues"
 
