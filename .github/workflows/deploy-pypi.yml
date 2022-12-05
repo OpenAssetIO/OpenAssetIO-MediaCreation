@@ -1,0 +1,56 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2022 The Foundry Visionmongers Ltd
+
+name: Deploy PyPI
+
+concurrency:
+  # Shared with `build-wheels`.
+  group: wheel-${{ github.ref }}
+  # Allow `build-wheels` to finish.
+  cancel-in-progress: false
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish_testpypi:
+    name: Publish distribution 📦 to TestPyPI
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Download wheels from commit ${{ github.sha }}
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: build-wheels.yml
+          workflow_conclusion: success
+          commit: ${{ github.sha }}
+          name: openassetio-mediacreation-wheels
+          path: dist
+
+      - name: Upload to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.TEST_PYPI_ACCESS_TOKEN }}
+          repository_url: https://test.pypi.org/legacy/
+
+  publish_pypi:
+    name: Publish distribution 📦 to PyPI
+    needs: publish_testpypi
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Download wheels from commit ${{ github.sha }}
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: build-wheels.yml
+          workflow_conclusion: success
+          commit: ${{ github.sha }}
+          name: openassetio-mediacreation-wheels
+          path: dist
+
+      - name: Upload to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_ACCESS_TOKEN }}

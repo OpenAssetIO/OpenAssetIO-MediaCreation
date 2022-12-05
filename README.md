@@ -9,6 +9,10 @@ Included are several well-known Traits and Specifications for use in
 OpenAssetIO hosts and managers. For more information on this mechanism,
 see the [OpenAssetIO docs](https://thefoundryvisionmongers.github.io/OpenAssetIO/).
 
+MediaCreation is a fully generated component,
+[openassetio-traitgen](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen)
+is used to generate trait implementations based on [traits.yml](traits.yml)
+
 ## Project status
 
 These initial incarnations of traits/specifications serve as
@@ -24,9 +28,7 @@ Pending tasks:
 ## Installation
 
 ```shell
-git clone https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation
-cd OpenAssetIO-MediaCreation
-pip install .
+pip install openassetio-mediacreation
 ```
 
 During installation, [openassetio-traitgen](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen)
