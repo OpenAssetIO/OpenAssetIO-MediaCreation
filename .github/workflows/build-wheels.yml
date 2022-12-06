@@ -1,0 +1,43 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2022 The Foundry Visionmongers Ltd#
+
+name: Build Wheels
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  pull_request:
+
+concurrency:
+  # Shared with `deploy-pypi`.
+  group: wheel-${{ github.ref }}
+  # Cancel any in-progress build or publish.
+  cancel-in-progress: true
+
+jobs:
+  build_wheels:
+    name: Build wheel
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install setuptools wheel
+
+      - name: Build wheels
+        run: pip wheel --no-deps --wheel-dir wheelhouse .
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: openassetio-mediacreation-wheels
+          path: ./wheelhouse/*.whl
