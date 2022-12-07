@@ -33,9 +33,15 @@ python -m pip install openassetio-mediacreation
 
 ## Running the tests
 
-To run the tests, after installing, simply run
+To run the tests, on a local development checkout, you can install
+the package with pip, then run `pytest`.
+
+Note, editable installs are not supported as the package is entirely
+auto-generated from the traits YAML.
 
 ```shell
+python -m pip install .
+python -m pip install pytest
 pytest
 ```
 
