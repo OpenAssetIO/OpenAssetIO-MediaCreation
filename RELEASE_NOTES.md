@@ -1,6 +1,17 @@
 Release Notes
 =============
 
+v1.0.0-alpha.x
+--------------
+
+### New features
+
+- Adds the `Managed` management policy trait, that indicates that a
+  manager wishes to manage data matching the specified trait set.
+  This was removed from the OpenAssetIO core API.
+  [#717](https://github.com/OpenAssetIO/OpenAssetIO/issues/717)
+
+
 v1.0.0-alpha.2
 --------------
 

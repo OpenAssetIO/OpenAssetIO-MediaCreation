@@ -46,3 +46,6 @@ class Test_trait_imports:
 
     def test_importing_LocatableContentTrait_succeeds(self):
         from openassetio_mediacreation.traits.content import LocatableContentTrait
+
+    def test_importing_ManagedTrait_succeeds(self):
+        from openassetio_mediacreation.traits.managementPolicy import ManagedTrait
