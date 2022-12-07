@@ -15,6 +15,9 @@ traits:
           concurrently to form layers of references to media. Frequently
           used in non-linear editing environments such as Video and
           Audio post production tools.
+        usage:
+          - entity
+          - locale
 
       Track:
         description: >
@@ -23,6 +26,9 @@ traits:
           collection is active at any given time. Frequently used in
           non-linear editing environments such as Video and Audio post
           production tools.
+        usage:
+          - entity
+          - locale
 
       Clip:
         description: >
@@ -34,6 +40,9 @@ traits:
 
           TODO(TC) Define any additional properties, and companion
           traits such as 'frameRange' and 'handles'.
+        usage:
+          - entity
+          - locale
         properties:
           name:
             type: string
@@ -53,6 +62,8 @@ traits:
           of the entity's content for the current process environment
           - considering platform, host, etc. Location is in the form
           of a URL.
+        usage:
+          - entity
         properties:
           location:
             type: string

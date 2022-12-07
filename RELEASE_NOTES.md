@@ -20,6 +20,11 @@ v1.0.0-alpha.x
   [#717](https://github.com/OpenAssetIO/OpenAssetIO/issues/717)
 
 
+### Improvements
+
+- Added usage information to all traits.
+
+
 v1.0.0-alpha.2
 --------------
 
