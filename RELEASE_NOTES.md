@@ -11,6 +11,14 @@ v1.0.0-alpha.x
   This was removed from the OpenAssetIO core API.
   [#717](https://github.com/OpenAssetIO/OpenAssetIO/issues/717)
 
+- Adds the `ResolvesFutureEntities` management policy trait, that can be
+  used to indicate that a manager is capable of resolving the specified
+  trait set for entities that don't exist yet. This supersedes the old
+  `WillManagePathTrait`, that was deprecated and subsequently remove
+  from OpenAssetIO core API following the switch from the old 'primary
+  string and attributes' approach to composed traits.
+  [#717](https://github.com/OpenAssetIO/OpenAssetIO/issues/717)
+
 
 v1.0.0-alpha.2
 --------------
