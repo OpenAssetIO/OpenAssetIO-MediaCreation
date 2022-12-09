@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=../../python/openassetio_traitgen/schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/OpenAssetIO/OpenAssetIO-TraitGen/main/python/openassetio_traitgen/schema.json
 # yamllint disable-line rule:document-start
 package: openassetio-mediacreation
 
@@ -15,6 +15,9 @@ traits:
           concurrently to form layers of references to media. Frequently
           used in non-linear editing environments such as Video and
           Audio post production tools.
+        usage:
+          - entity
+          - locale
 
       Track:
         description: >
@@ -23,6 +26,9 @@ traits:
           collection is active at any given time. Frequently used in
           non-linear editing environments such as Video and Audio post
           production tools.
+        usage:
+          - entity
+          - locale
 
       Clip:
         description: >
@@ -34,10 +40,14 @@ traits:
 
           TODO(TC) Define any additional properties, and companion
           traits such as 'frameRange' and 'handles'.
+        usage:
+          - entity
+          - locale
         properties:
           name:
             type: string
             description: The name of the clip.
+
   content:
     description: Traits related to abstract content.
     members:
@@ -52,6 +62,8 @@ traits:
           of the entity's content for the current process environment
           - considering platform, host, etc. Location is in the form
           of a URL.
+        usage:
+          - entity
         properties:
           location:
             type: string
@@ -61,3 +73,66 @@ traits:
 
               This must be a valid URL so special characters need to
               be encoded.
+
+  managementPolicy:
+    description: Traits used in a Manager's managementPolicy response.
+    members:
+      Managed:
+        description: >
+          A trait indicating that the data matching the supplied trait set
+          is handled by the manager.
+
+
+          There are three possible policies determined by
+          applying/querying this trait:
+          * If the response is not imbued with this trait, then the
+            Manager has no interest in participating in the management of
+            entities that match the queried trait set, for either read or
+            write.
+          * If the response is imbued with this trait, but the "exclusive"
+            property is not set, or set to False, then the Manager would
+              like the opportunity to manage the data, but the user should
+              still be presented with standard Host UI for the type as an
+              option.
+            * If  the "exclusive" property is set to true, then the Manager
+              takes exclusive control over data with the queried trait set,
+              and any standard host interfaces etc should be suppressed.
+        usage:
+          - managementPolicy
+        properties:
+          exclusive:
+            type: boolean
+            description: >
+              Determines if the manager exclusively handles data matching
+              the supplied trait set.
+
+
+              If True, then standard host contols should be disabled
+              in favour of manager delegated UI. For example, file system
+              browsers when determining where to load/save data.
+
+
+              If False, then standard host controls can be presented in
+              addition to any custom manager UI.
+
+      ResolvesFutureEntities:
+        description: >
+          A trait indicating a manager can potentially resolve the
+          supplied trait set for future entities.
+
+
+          If not imbued, the manager is not capable of determining data
+          in advance for new entities, and is only capable of resolving
+          traits for exising ones.
+
+
+          An example of this would be the ability to resolve a
+          LocatableContentTrait in advance, to determine where new data
+          should be written. When this trait imbued in the
+          managementPolicy response, a host may attempt to resolve the
+          locatableContent trait of a working entity reference supplied by
+          preflight in order to determine a suitable output path before
+          work is done. In its absence, a host must use alternate means to
+          determine a suitable output location.
+        usage:
+          - managementPolicy
