@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2021-2022 The Foundry Visionmongers Ltd
+[tool.pylint.messages_control]
+
+[tool.pylint.format]
+max-line-length = 99
+
+[tool.black]
+line-length = 99

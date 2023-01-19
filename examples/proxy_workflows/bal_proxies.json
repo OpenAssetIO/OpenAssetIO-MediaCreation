@@ -1,0 +1,149 @@
+{
+	"$schema": "https://raw.githubusercontent.com/OpenAssetIO/OpenAssetIO/main/resources/examples/manager/BasicAssetLibrary/schema.json",
+	"entities": {
+		"plate/original": {
+			"versions": [
+				{
+					"traits": {
+						"openassetio-mediacreation:image.Image": {},
+						"openassetio-mediacreation:content.LocatableContent": {
+							"location": "file:///media/plate.orig.%2504d.exr"
+						},
+						"openassetio-mediacreation:image.Raster": {
+							"height": 2160,
+							"width": 4096
+						},
+						"openassetio-mediacreation:image.OCIOColorManaged": {
+							"colorspace": "ADX10"
+						},
+						"openassetio-mediacreation:time.FrameRanged": {
+							"startFrame": 1001,
+							"endFrame": 1351
+						}
+					}
+				}
+			],
+			"relations": [
+				{
+					"traits": { "openassetio-mediacreation:representation.Proxy": {} },
+					"entities": [ "plate/proxy/1080", "plate/proxy/720", "plate/proxy/576" ]
+				}
+			]
+		},
+		"plate/proxy/1080": {
+			"versions": [
+				{
+					"traits": {
+						"openassetio-mediacreation:image.Image": {},
+						"openassetio-mediacreation:content.LocatableContent": {
+							"location": "file:///media/plate.1080p.mov"
+						},
+						"openassetio-mediacreation:image.Raster": {
+							"height": 1080,
+							"width": 1920
+						},
+						"openassetio-mediacreation:image.OCIOColorManaged": {
+							"colorspace": "Rec.709-sRGB"
+						},
+						"openassetio-mediacreation:time.FrameRanged": {
+							"startFrame": 1001,
+							"endFrame": 1351
+						},
+						"openassetio-mediacreation:representation.Proxy": {
+							"scaleRatio": 0.5,
+							"label": "Full HD (1080p)"
+						}
+					}
+				}
+			],
+			"relations": [
+				{
+					"traits": { "openassetio-mediacreation:representation.Proxy": {} },
+					"entities": [ "plate/proxy/720", "plate/proxy/576" ]
+				},
+				{
+					"traits": { "openassetio-mediacreation:representation.Original": {} },
+					"entities": [ "plate/original" ]
+				}
+			]
+		},
+		"plate/proxy/720": {
+			"versions": [
+				{
+					"traits": {
+						"openassetio-mediacreation:image.Image": {},
+						"openassetio-mediacreation:content.LocatableContent": {
+							"location": "file:///media/plate.720p.mov"
+						},
+						"openassetio-mediacreation:image.Raster": {
+							"height": 720,
+							"width": 1920
+						},
+						"openassetio-mediacreation:image.OCIOColorManaged": {
+							"colorspace": "Rec.709-sRGB"
+						},
+						"openassetio-mediacreation:time.FrameRanged": {
+							"startFrame": 1001,
+							"endFrame": 1351
+						},
+						"openassetio-mediacreation:representation.Proxy": {
+							"scaleRatio": 0.333,
+							"label": "Half HD (720p)"
+						}
+					}
+				}
+			],
+			"relations": [
+				{
+					"traits": { "openassetio-mediacreation:representation.Proxy": {} },
+					"entities": [ "plate/proxy/1080", "plate/proxy/576" ]
+				},
+				{
+					"traits": { "openassetio-mediacreation:representation.Original": {} },
+					"entities": [ "plate/original" ]
+				}
+			]
+		},
+		"plate/proxy/576": {
+			"versions": [
+				{
+					"traits": {
+						"openassetio-mediacreation:image.Image": {},
+						"openassetio-mediacreation:content.LocatableContent": {
+							"location": "file:///media/plate.PAL.mov"
+						},
+						"openassetio-mediacreation:image.Raster": {
+							"height": 576,
+							"width": 720,
+							"pixelAspectRatio": 1.422
+				  
+						},
+						"openassetio-mediacreation:image.OCIOColorManaged": {
+							"colorspace": "Rec.709-sRGB"
+						},
+						"openassetio-mediacreation:time.FrameRanged": {
+							"startFrame": 1001,
+							"endFrame": 1351
+						},
+						"openassetio-mediacreation:representation.Proxy": {
+							"scaleRatio": 0.267,
+							"label": "PAL (anamorphic)"
+						}
+					}
+				}
+			],
+			"relations": [
+				{
+					"traits": { "openassetio-mediacreation:representation.Proxy": {} },
+					"entities": [ "plate/proxy/1080", "plate/proxy/720" ]
+				},
+				{
+					"traits": { "openassetio-mediacreation:representation.Original": {} },
+					"entities": [ "plate/original" ]
+				}
+			]
+		}
+
+
+	}
+  }

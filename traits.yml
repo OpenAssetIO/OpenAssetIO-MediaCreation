@@ -6,6 +6,115 @@ description: Well-known Traits and Specifications for use in OpenAssetIO
   hosts and managers.
 
 traits:
+
+  time:
+    description: >
+      Traits that describe properties of an entity in terms of its
+      temporal variation.
+    members:
+      FrameRanged:
+        description: >
+          The temporal dimension of an entity experssed in numbers of
+          whole frames.
+
+
+          NOTE: This is a deliberately naieve definition to serve as
+          a basis for discussion.
+        usage:
+          - entity
+        properties:
+          startFrame:
+            type: integer
+            description: The starting frame.
+          endFrame:
+            type: integer
+            description: The ending frame (inclusive).
+          frameRate:
+            type: float
+            description: The intendent playback rate.
+          stride:
+            type: integer
+            description: >
+              The cadence of images, the deafult is 1, which implies
+              every frame, a value of 10 would indicate only every 10
+              frames are present.
+
+  image:
+    description: >
+      Traits that describe 2D visual content such as pixel and vector
+      based graphics.
+    members:
+      Image:
+        description: A base trait for all 2D visual content.
+        usage:
+          - entity
+      Raster:
+        description: Visual content defined by a 2D grid of pixels.
+        usage:
+          - entity
+        properties:
+          width:
+            type: integer
+            description: The number of columns in the pixel grid.
+          height:
+            type: integer
+            description: The number of rows in the pixel grid.
+          pixelAspectRatio:
+            type: float
+            description: >
+              The aspect ratio of each pixel when presented. Expressed
+              as width/height.
+      OCIOColorManaged:
+        description: >
+          Details of the color space of the image data, when used in an
+          OpenColorIO managed pipeline.
+        usage:
+          - entity
+        properties:
+          colorspace:
+            type: string
+            description: A valid OCIO color space name
+
+  representation:
+    description: >
+      Traits relating to alternate representations of what it otherwise
+      logically the same entity.
+    members:
+      Proxy:
+        description: >
+          An alternate scale/quality representation. In the case of
+          images, this is usually either a lower resolution, reduced
+          quality encoding. For volumetric data this may be reduced
+          spacial fedlity or number of points.
+        usage:
+          - entity
+          - relationship
+        properties:
+          scaleRatio:
+            type: float
+            description: >
+              The ratio of the representations dimension compared to the
+              original.
+          qualityRatio:
+            type: float
+            description: >
+              The ratio of the representations quality compared to the
+              original.
+          label:
+            type: string
+            description: >
+              A short user-facing label that identifies the representation.
+              This should not be the Entity name.
+              
+
+              e.g. "half", "mobile friendly"
+      Original:
+        description: >
+          The original canonical/source representation of the entity
+          from which other proxy representations may have been derived.
+        usage:
+          - relationship
+
   timeline:
     description: Traits related to timelines.
     members:
@@ -136,3 +245,70 @@ traits:
           determine a suitable output location.
         usage:
           - managementPolicy
+
+  locale:
+    description: Traits used to cover commonly occurings locales.
+    members:
+      ExampleCode:
+        description: >
+          A trait that describes API usage within sample code that may
+          be contrived or working with placeholder content in order to
+          demonstrate functionality or workflow approaches.
+      CommandLineInterface:
+        description: >
+          A trait that describes a tool that operates as a CLI or TUI.
+
+
+specifications:
+  image:
+    description: Specifications for commmonly encountered image types.
+    members:
+      RasterImage:
+        description: >
+          Non-animated pixel based images with data stored in an
+          external BLOB.
+        usage:
+          - entity
+        traitSet:
+          - namespace: image
+            name: Image
+          - namespace: image
+            name: Raster
+          - namespace: image
+            name: OCIOColorManaged
+          - namespace: content
+            name: LocatableContent
+      RasterImageSequence:
+        description: >
+          Time-varying pixel based images with data stored in an
+          external BLOB (or BLOBs).
+
+          
+          When the sequence is composed of several individual images,
+          the URL used to locate the content should contain an (URL
+          encoded) sprint-f style token indicating the time-varying part
+          of the sequence's name. Eg file:///data/seq.%2504d.exr.
+        usage:
+          - entity
+        traitSet:
+          - namespace: image
+            name: Image
+          - namespace: image
+            name: Raster
+          - namespace: image
+            name: OCIOColorManaged
+          - namespace: content
+            name: LocatableContent
+          - namespace: time
+            name: FrameRanged
+  locale:
+    description: Specifications for cover commonly occurings locales.
+    members:
+      ExampleCodeCLI:
+        description: A code sample that can be run on the command line.
+        traitSet:
+          - namespace: locale
+            name: ExampleCode
+          - namespace: locale
+            name: CommandLineInterface
+
