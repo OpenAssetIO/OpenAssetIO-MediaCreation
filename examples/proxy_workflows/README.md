@@ -43,7 +43,8 @@ The sketch models a contrived workflow, whereby you provide it with a
 single entity reference, and it queries any alternate image sequence
 representations. Any discovered references are printed out to the shell.
 
-The included BAL library is very simple. It contains an plate:
+The included BAL library is very simple. It contains some footage from
+on set.
 
 - `bal:///plate/original`
 
@@ -57,7 +58,7 @@ You can use the script with any of these references to explore the
 available alternatives, eg:
 
 ```shell
-python ./proxies.py bal://plate/proxy/1080
+python ./proxies.py bal:///plate/proxy/1080
 ```
 
 This should show you info about the orginal, as well as other available
