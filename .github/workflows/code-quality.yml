@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2023 The Foundry Visionmongers Ltd
+
+name: Code quality
+on: pull_request
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  cpp-linters:
+    name: C++ linters
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        config:
+          - os: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      # Run cmake lint on all CMakeLists.txt and .cmake files that arn't
+      # in hidden directories.
+      - name: CMake lint
+        shell: bash
+        run: >
+          python -m pip install cmakelang pyyaml &&
+          find . -not -path '*/.*' -a -name "CMakeLists.txt"
+          -o -not -path '*/.*' -name "*.cmake" | xargs cmake-lint
