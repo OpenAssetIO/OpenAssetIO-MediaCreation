@@ -7,6 +7,22 @@ description: Well-known Traits and Specifications for use in OpenAssetIO
 
 traits:
 
+  identity:
+    description: >
+      Traits that identify an entity such as a display name that can be
+      presented to a user.
+    members:
+      DisplayName:
+        description: >
+          A user-facing name for the entity that can be presented to
+          identify the entity to a user.
+        properties:
+          displayName:
+            type: string
+            description: A utf-8 encoded display name.
+        usage:
+          - entity
+
   time:
     description: >
       Traits that describe properties of an entity in terms of its
@@ -278,6 +294,8 @@ specifications:
             name: OCIOColorManaged
           - namespace: content
             name: LocatableContent
+          - namespace: identity
+            name: DisplayName
       RasterImageSequence:
         description: >
           Time-varying pixel based images with data stored in an
@@ -299,6 +317,8 @@ specifications:
             name: OCIOColorManaged
           - namespace: content
             name: LocatableContent
+          - namespace: identity
+            name: DisplayName
           - namespace: time
             name: FrameRanged
   locale:
