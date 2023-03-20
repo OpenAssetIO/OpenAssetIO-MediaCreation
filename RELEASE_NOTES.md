@@ -1,6 +1,16 @@
 Release Notes
 =============
 
+v1.0.0-alpha.x
+--------------
+
+### New features
+
+- Add a C++ packaging process to build a cmake package from C++ traits
+  generated using `openasset-traitgen`.
+  [#24](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/24)
+
+
 v1.0.0-alpha.3
 --------------
 
@@ -18,7 +28,6 @@ v1.0.0-alpha.3
   from OpenAssetIO core API following the switch from the old 'primary
   string and attributes' approach to composed traits.
   [#717](https://github.com/OpenAssetIO/OpenAssetIO/issues/717)
-
 
 ### Improvements
 
@@ -54,6 +63,7 @@ v1.0.0-alpha.2
 - Switched to using [openassetio-traitgen](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen/)
   to generate traits. Remove hand rolled traits.
   [#10](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/10)
+
 
 v1.0.0-alpha.1
 --------------

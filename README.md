@@ -21,17 +21,40 @@ Pending tasks:
 
 - [x] Define YAML schema to represent traits/specifications.
 - [x] Auto-generate Python classes from YAML
-- [ ] Auto-generate CPP and C classes from YAML.
+- [x] Auto-generate CPP classes from YAML
+- [ ] Auto-generate C classes from YAML.
 - [ ] Extend library to cover common post-production entities and
       locales.
 
 ## Installation
 
+### Python
+
 ```shell
 python -m pip install openassetio-mediacreation
 ```
 
+### C++
+
+> **Note**
+>
+> During the configure process, `openassetio-traitgen` will be used to
+> generate C++ trait files. This is assumed to be available in your
+> environment. You may install it via `python -m pip install
+> openassetio-traitgen`
+
+```shell
+cmake -S . -B build
+cmake --build build
+cmake --install build
+```
+
+A cmake package will be created under a `dist` directory in your
+`build` directory.
+
 ## Running the tests
+
+### Python
 
 To run the tests, on a local development checkout, you can install
 the package with pip, then run `pytest`.
@@ -43,6 +66,23 @@ auto-generated from the traits YAML.
 python -m pip install .
 python -m pip install pytest
 pytest
+```
+
+### C++
+
+> **Note**
+>
+> Building with tests introduces a build-time dependency on
+> [OpenAssetIO](https://github.com/OpenAssetIO/OpenAssetIO), which must
+> be discoverable via
+> [cmake.](https://cmake.org/cmake/help/v3.21/command/find_package.html)
+
+The C++ tests are enabled via setting a cmake variable in the configure:
+
+```shell
+cmake -S . -B build -DOPENASSETIO_MEDIACREATION_ENABLE_TEST=ON
+cmake --build build
+ctest --test-dir build/tests/cpp
 ```
 
 ## Contributing

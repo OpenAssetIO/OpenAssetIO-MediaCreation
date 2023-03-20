@@ -1,0 +1,14 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "test",
+            "warnings": {
+                "dev": true
+            },
+            "cacheVariables": {
+                "OPENASSETIO_MEDIACREATION_ENABLE_TEST": "ON"
+            }
+        }
+    ]
+}
