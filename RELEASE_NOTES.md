@@ -10,6 +10,10 @@ v1.0.0-alpha.x
   generated using `openasset-traitgen`.
   [#24](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/24)
 
+- Added the `Displayname` trait which supersedes the `entityName` and
+  `entityDisplayName` methods in the core API.
+  [OpenAssetIO/#837](https://github.com/OpenAssetIO/OpenAssetIO/issues/837)
+
 v1.0.0-alpha.3
 --------------
 
