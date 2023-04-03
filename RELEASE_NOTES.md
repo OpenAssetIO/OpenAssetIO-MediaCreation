@@ -10,7 +10,6 @@ v1.0.0-alpha.x
   generated using `openasset-traitgen`.
   [#24](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/24)
 
-
 v1.0.0-alpha.3
 --------------
 
@@ -32,7 +31,6 @@ v1.0.0-alpha.3
 ### Improvements
 
 - Added usage information to all traits.
-
 
 v1.0.0-alpha.2
 --------------
@@ -63,7 +61,6 @@ v1.0.0-alpha.2
 - Switched to using [openassetio-traitgen](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen/)
   to generate traits. Remove hand rolled traits.
   [#10](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/10)
-
 
 v1.0.0-alpha.1
 --------------
