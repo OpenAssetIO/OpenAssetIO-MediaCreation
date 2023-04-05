@@ -74,6 +74,7 @@ set(_public_header_source_root "${PROJECT_BINARY_DIR}/openassetio_mediacreation/
 set(_config_install_dir "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
 set(_project_config_file "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
 set(_version_config_file "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake")
+set(_traitgen_data_dir "${CMAKE_INSTALL_DATADIR}/openassetio-traitgen")
 
 #-----------------------------------------------------------------------
 # Include directories
@@ -119,6 +120,12 @@ install(
 #-----------------------------------------------------------------------
 # Copy traitgen headers to install dir
 install(DIRECTORY ${_public_header_source_root} DESTINATION .)
+
+install(
+    FILES "${PROJECT_BINARY_DIR}/traits.yml"
+    DESTINATION ${_traitgen_data_dir}
+    RENAME "openassetio-mediacreation.yml"
+)
 
 #-----------------------------------------------------------------------
 # C++ tests.
