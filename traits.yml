@@ -73,6 +73,43 @@ traits:
 
               This must be a valid URL so special characters need to
               be encoded.
+  identity:
+    description: Traits that aid identification of an entity
+    members:
+      DisplayName:
+        description: >
+          Names that can be presented to a user in order to identify
+          and/or disambiguate the entity. These strings are potentially
+          unstable and should not be used as a UUID or other persistent
+          anchor.
+        usage:
+          - entity
+        properties:
+          name:
+            type: string
+            description: |
+              The humanized name of entity itself, not including any
+              hierarchy or classification.
+
+              For example:
+              - `"Cuttlefish v1"` - for a version of an asset
+              - `"seq003"` - for a sequence in a hierarchy
+
+          qualifiedName:
+            type: string
+            description: |
+              An unambiguous, humanised name for the entity.
+
+              The display name may want to consider the host, and any other
+              relevant Context information to form a display name for an
+              entity that can uniquely identify the entity in that context.
+
+              For example:
+              - `"dive / build / cuttlefish / model / v1"` for a version
+                  of an asset in an 'open recent' menu.
+              - `"Sequence 003 [ Dive / Episode 1 ]"` for a sequence in
+                 an hierarchy as a window title.
+
 
   managementPolicy:
     description: Traits used in a Manager's managementPolicy response.

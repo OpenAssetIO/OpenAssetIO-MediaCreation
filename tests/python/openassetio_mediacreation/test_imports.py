@@ -52,3 +52,6 @@ class Test_trait_imports:
 
     def test_importing_ResolvesFutureEntitiesTrait_succeeds(self):
         from openassetio_mediacreation.traits.managementPolicy import ResolvesFutureEntitiesTrait
+
+    def test_importing_DisplayNameTrait_succeeds(self):
+        from openassetio_mediacreation.traits.identity import DisplayNameTrait
