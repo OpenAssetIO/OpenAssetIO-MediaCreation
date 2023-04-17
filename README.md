@@ -7,7 +7,7 @@ OpenAssetIO extensions for use in Media Creation
 
 Included are several well-known Traits and Specifications for use in
 OpenAssetIO hosts and managers. For more information on this mechanism,
-see the [OpenAssetIO docs](https://thefoundryvisionmongers.github.io/OpenAssetIO/).
+see the [OpenAssetIO docs](https://openassetio.github.io/OpenAssetIO).
 
 MediaCreation is an automatically generated Python package,
 [openassetio-traitgen](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen)
