@@ -15,6 +15,8 @@ runs:
       with:
         repository: OpenAssetIO/OpenAssetIO
         path: openassetio-checkout
+        # Pinned until TraitGen is updated to not use TraitsBase
+        ref: v1.0.0-alpha.10
 
     - name: Build OpenAssetIO
       shell: bash
