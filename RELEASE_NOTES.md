@@ -1,6 +1,13 @@
 Release Notes
 =============
 
+v1.0.0-alpha.x
+--------------
+
+### Improvements
+
+- Updated `openassetio-traitgen` to `v1.0.0-alpha.6`.
+
 v1.0.0-alpha.4
 --------------
 
