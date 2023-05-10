@@ -8,6 +8,12 @@ v1.0.0-alpha.x
 
 - Updated `openassetio-traitgen` to `v1.0.0-alpha.6`.
 
+### Bug fixes
+
+- CMake will now fail at the configure stage if the
+  `openassetio-traitgen` command is not available.
+  [#36](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/36)
+
 v1.0.0-alpha.4
 --------------
 
