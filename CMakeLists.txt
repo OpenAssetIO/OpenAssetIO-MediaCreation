@@ -55,13 +55,15 @@ endif ()
 # directly mimic a non-generated project, and lowers risk that changes
 # to the library structure later on will encounter issues caused by the
 # generative nature of the project.
-message("Generating Traits with OpenAssetIO-TraitGen")
+message("Generating Traits with openassetio-traitgen")
 # Mark the traits source as a configure dependency by copying it to the
 # binary dir, and use that file to run traitgen from.
 # This means if the source traits file is changed, configure will rerun.
 configure_file(${CMAKE_CURRENT_LIST_DIR}/traits.yml ${PROJECT_BINARY_DIR}/traits.yml)
 execute_process(COMMAND openassetio-traitgen ${PROJECT_BINARY_DIR}/traits.yml
-                -o ${PROJECT_BINARY_DIR} -g cpp)
+                -o ${PROJECT_BINARY_DIR} -g cpp
+                COMMAND_ERROR_IS_FATAL ANY
+                COMMAND_ECHO STDERR)
 
 add_library(openassetio-mediacreation INTERFACE)
 # add alias so the project can be used with add_subdirectory
