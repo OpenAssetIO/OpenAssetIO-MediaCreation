@@ -90,3 +90,9 @@ ctest --test-dir build/tests/cpp
 This repository follows the [contribution guidelines](https://github.com/TheFoundryVisionmongers/OpenAssetIO/blob/main/contributing/PROCESS.md)
 outlined in the main OpenAssetIO repository. All discussion most
 welcome!
+
+When adding new Traits and Specifications:
+
+1. Update [traits.yml](traits.yml)
+2. Add an [import test](tests/python/openassetio_mediacreation/test_imports.py)
+3. Update the [RELEASE_NOTES](RELEASE_NOTES.md)
