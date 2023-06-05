@@ -131,3 +131,18 @@ traits:
           determine a suitable output location.
         usage:
           - managementPolicy
+
+  auth:
+    description: Traits related to authentication and authorization.
+    members:
+      BearerToken:
+        description: >
+          This trait holds an authentication token that the manager may
+          pass to a back-end service.
+        usage:
+          - locale
+        properties:
+          token:
+            type: string
+            description: >
+              Contents of the token.

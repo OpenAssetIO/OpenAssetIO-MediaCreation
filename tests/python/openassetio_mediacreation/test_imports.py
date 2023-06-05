@@ -43,3 +43,6 @@ class Test_trait_imports:
 
     def test_importing_DisplayNameTrait_succeeds(self):
         from openassetio_mediacreation.traits.identity import DisplayNameTrait
+
+    def test_importing_BearerToken_succeeds(self):
+        from openassetio_mediacreation.traits.auth import BearerTokenTrait
