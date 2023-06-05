@@ -1,6 +1,13 @@
 Release Notes
 =============
 
+v1.0.0-alpha.x
+--------------
+
+### Breaking changes
+
+- Removed speculative timeline traits pending real-world use cases.
+
 v1.0.0-alpha.5
 --------------
 
