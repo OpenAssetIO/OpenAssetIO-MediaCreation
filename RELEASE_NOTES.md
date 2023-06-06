@@ -8,6 +8,10 @@ v1.0.0-alpha.x
 
 - Removed speculative timeline traits pending real-world use cases.
 
+### New Features
+
+- Added `openassetio_mediacreation.traits.auth.BearerTokenTrait`.
+
 v1.0.0-alpha.5
 --------------
 
