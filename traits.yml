@@ -1,10 +1,8 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/OpenAssetIO/OpenAssetIO-TraitGen/main/python/openassetio_traitgen/schema.json
 # yamllint disable-line rule:document-start
 package: openassetio-mediacreation
-
 description: Well-known Traits and Specifications for use in OpenAssetIO
   hosts and managers.
-
 traits:
   content:
     description: Traits related to abstract content.
@@ -67,8 +65,6 @@ traits:
                   of an asset in an 'open recent' menu.
               - `"Sequence 003 [ Dive / Episode 1 ]"` for a sequence in
                  an hierarchy as a window title.
-
-
   managementPolicy:
     description: Traits used in a Manager's managementPolicy response.
     members:
@@ -109,7 +105,6 @@ traits:
 
               If False, then standard host controls can be presented in
               addition to any custom manager UI.
-
       ResolvesFutureEntities:
         description: >
           A trait indicating a manager can potentially resolve the
@@ -131,7 +126,6 @@ traits:
           determine a suitable output location.
         usage:
           - managementPolicy
-
   auth:
     description: Traits related to authentication and authorization.
     members:
