@@ -41,7 +41,7 @@ jobs:
         run: python -m pytest -v
 
   test-cpp:
-    name: Test-Cpp
+    name: Test Cpp
     runs-on: ubuntu-latest
     needs: build-openassetio
     container:
@@ -68,3 +68,34 @@ jobs:
 
       - name: Test
         run: ctest -VV --test-dir build/tests/cpp --parallel 2
+
+  test-python-from-cmake:
+  # To support hybrid C++ applications, the python package may also be
+  # generated using the CMake packaging, in addition and simultaneously
+  # to the C++ package. This tests that.
+    name: "Test Python From CMake"
+    runs-on: ubuntu-latest
+    container:
+      image: aswf/ci-vfxall:2022-clang14.3
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Traitgen
+        run: python -m pip install openassetio-traitgen==1.0.0a6
+
+      - name: Configure CMake build
+        run: >
+          cmake -S . -B build -G Ninja
+          -DOPENASSETIO_MEDIACREATION_GENERATE_PYTHON=ON
+          -DOPENASSETIO_MEDIACREATION_PYTHON_SITEDIR="hybridpython"
+
+      - name: Install package
+        run: cmake --install build
+
+      - name: Install OpenAssetIO
+        run: python -m pip install openassetio>=1.0.0a6
+
+      - name: Test
+        run: |
+          python -m pip install -r tests/python/requirements.txt
+          PYTHONPATH=$(pwd)/build/dist/hybridpython python -m pytest -v

@@ -1,6 +1,15 @@
 Release Notes
 =============
 
+v1.0.0-alpha.x
+--------------
+### New Features
+
+- Added ability to generate python package whilst installing via cmake
+  build system.
+  Added cmake variables `OPENASSETIO_MEDIACREATION_GENERATE_PYTHON` and
+  `OPENASSETIO_MEDIACREATION_PYTHON_SITEDIR` to support this.
+
 v1.0.0-alpha.6
 --------------
 
