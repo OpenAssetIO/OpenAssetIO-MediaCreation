@@ -14,7 +14,18 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 #-----------------------------------------------------------------------
 # Options
 option(OPENASSETIO_MEDIACREATION_ENABLE_TEST "Run test on mediacreation traits" OFF)
+option(OPENASSETIO_MEDIACREATION_GENERATE_PYTHON "Aditionally generate python library" OFF)
+if (OPENASSETIO_MEDIACREATION_GENERATE_PYTHON)
+    # By default we'll compute the correct site-packages directory
+    # structure, but allow overriding.
+    set(OPENASSETIO_MEDIACREATION_PYTHON_SITEDIR
+        ""
+        CACHE STRING
+        "Override default Python module install directory, relative to CMAKE_INSTALL_PREFIX")
+endif ()
+
 message(STATUS "Test enabled = ${OPENASSETIO_MEDIACREATION_ENABLE_TEST}")
+message(STATUS "Generate python library = ${OPENASSETIO_MEDIACREATION_GENERATE_PYTHON}")
 
 # ABI wrangling only needed for test
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
@@ -61,9 +72,28 @@ message("Generating Traits with openassetio-traitgen")
 # This means if the source traits file is changed, configure will rerun.
 configure_file(${CMAKE_CURRENT_LIST_DIR}/traits.yml ${PROJECT_BINARY_DIR}/traits.yml)
 execute_process(COMMAND openassetio-traitgen ${PROJECT_BINARY_DIR}/traits.yml
-                -o ${PROJECT_BINARY_DIR} -g cpp
-                COMMAND_ERROR_IS_FATAL ANY
-                COMMAND_ECHO STDERR)
+                    -o ${PROJECT_BINARY_DIR}/cpp -g cpp
+                    COMMAND_ERROR_IS_FATAL ANY
+                    COMMAND_ECHO STDERR)
+
+if (OPENASSETIO_MEDIACREATION_GENERATE_PYTHON)
+    # Generate the python package by running traitgen.
+    # By running traitgen during the cmake step, using the traitgen that
+    # is available to the environment, just as the C++ generation does,
+    # we guarentee that the versions of traitgen used between c++ and
+    # python packages are identical. This isn't a guarentee when using
+    # the `pip install .` method of creating a python package, due to
+    # pip having a seperate dependency resolution method.
+    #
+    # At the time of writing, this produces the same artifact as doing
+    # `pip install .` (and invoking setup.py), but that's not a
+    # guarentee going forward, as additional elements of the python
+    # package may be added to mediacreation.
+    execute_process(COMMAND openassetio-traitgen ${PROJECT_BINARY_DIR}/traits.yml
+        -o ${PROJECT_BINARY_DIR}/python -g python
+        COMMAND_ERROR_IS_FATAL ANY
+        COMMAND_ECHO STDERR)
+endif()
 
 add_library(openassetio-mediacreation INTERFACE)
 # add alias so the project can be used with add_subdirectory
@@ -71,11 +101,11 @@ add_library(OpenAssetIO-MediaCreation::openassetio-mediacreation ALIAS openasset
 
 include(GNUInstallDirs)
 
-# traitgen generates to _public_header_source_root location by default.
-set(_public_header_source_root "${PROJECT_BINARY_DIR}/openassetio_mediacreation/include")
+# traitgen generates to _public_header_source_root/cpp location by default.
+set(_public_header_source_root "${PROJECT_BINARY_DIR}/cpp/openassetio_mediacreation/include")
 set(_config_install_dir "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
-set(_project_config_file "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
-set(_version_config_file "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake")
+set(_project_config_file "${PROJECT_BINARY_DIR}/cpp/${PROJECT_NAME}Config.cmake")
+set(_version_config_file "${PROJECT_BINARY_DIR}/cpp/${PROJECT_NAME}ConfigVersion.cmake")
 set(_traitgen_data_dir "${CMAKE_INSTALL_DATADIR}/openassetio-traitgen")
 
 #-----------------------------------------------------------------------
@@ -111,6 +141,18 @@ install(
     NAMESPACE ${PROJECT_NAME}::
     FILE ${PROJECT_NAME}Targets.cmake
 )
+
+#-----------------------------------------------------------------------
+# Optionally install python library
+if (OPENASSETIO_MEDIACREATION_GENERATE_PYTHON)
+    include(ThirdParty)
+
+    install(
+        DIRECTORY ${PROJECT_BINARY_DIR}/python/openassetio_mediacreation
+        DESTINATION "${OPENASSETIO_MEDIACREATION_PYTHON_SITEDIR}"
+        FILES_MATCHING PATTERN "*.py"
+    )
+endif()
 
 #-----------------------------------------------------------------------
 # Copy CMake Files
