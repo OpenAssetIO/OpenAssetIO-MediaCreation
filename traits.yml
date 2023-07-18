@@ -43,9 +43,10 @@ traits:
         properties:
           name:
             type: string
-            description: |
+            description: >
               The humanized name of entity itself, not including any
               hierarchy or classification.
+
 
               For example:
               - `"Cuttlefish v1"` - for a version of an asset
@@ -53,12 +54,14 @@ traits:
 
           qualifiedName:
             type: string
-            description: |
+            description: >
               An unambiguous, humanised name for the entity.
+
 
               The display name may want to consider the host, and any other
               relevant Context information to form a display name for an
               entity that can uniquely identify the entity in that context.
+
 
               For example:
               - `"dive / build / cuttlefish / model / v1"` for a version
