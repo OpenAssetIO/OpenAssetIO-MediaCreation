@@ -3,7 +3,8 @@ Release Notes
 
 v1.0.0-alpha.x
 --------------
-### New Features
+
+### New features
 
 - Added ability to generate python package whilst installing via cmake
   build system.
@@ -17,7 +18,7 @@ v1.0.0-alpha.6
 
 - Removed speculative timeline traits pending real-world use cases.
 
-### New Features
+### New features
 
 - Added `openassetio_mediacreation.traits.auth.BearerTokenTrait`.
 
@@ -102,6 +103,6 @@ v1.0.0-alpha.2
 v1.0.0-alpha.1
 --------------
 
-### New Features
+### New features
 
 - Initial release.
