@@ -27,10 +27,10 @@ traits:
               The location of the entities external content.
 
 
-              This must be a valid URL so special characters need to
-              be encoded.
+              This must be a valid URL, so special characters need to
+              be encoded accordingly.
   identity:
-    description: Traits that aid identification of an entity
+    description: Traits that aid the identification of an entity.
     members:
       DisplayName:
         description: >
@@ -55,7 +55,7 @@ traits:
           qualifiedName:
             type: string
             description: >
-              An unambiguous, humanised name for the entity.
+              An unambiguous, humanized name for the entity.
 
 
               The display name may want to consider the host, and any other
@@ -67,7 +67,7 @@ traits:
               - `"dive / build / cuttlefish / model / v1"` for a version
                   of an asset in an 'open recent' menu.
               - `"Sequence 003 [ Dive / Episode 1 ]"` for a sequence in
-                 an hierarchy as a window title.
+                 a hierarchy as a window title.
   managementPolicy:
     description: Traits used in a Manager's managementPolicy response.
     members:
@@ -88,7 +88,7 @@ traits:
               like the opportunity to manage the data, but the user should
               still be presented with standard Host UI for the type as an
               option.
-            * If  the "exclusive" property is set to true, then the Manager
+            * If the "exclusive" property is set to true, then the Manager
               takes exclusive control over data with the queried trait set,
               and any standard host interfaces etc should be suppressed.
         usage:
