@@ -11,6 +11,10 @@ v1.0.0-alpha.x
   Added cmake variables `OPENASSETIO_MEDIACREATION_GENERATE_PYTHON` and
   `OPENASSETIO_MEDIACREATION_PYTHON_SITEDIR` to support this.
 
+- Added traits and specifications to define and query entity versioning
+  information.
+  [#48](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/48)
+
 v1.0.0-alpha.6
 --------------
 
