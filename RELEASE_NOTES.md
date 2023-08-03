@@ -3,12 +3,17 @@ Release Notes
 
 v1.0.0-alpha.x
 --------------
-### New Features
+
+### New features
 
 - Added ability to generate python package whilst installing via cmake
   build system.
   Added cmake variables `OPENASSETIO_MEDIACREATION_GENERATE_PYTHON` and
   `OPENASSETIO_MEDIACREATION_PYTHON_SITEDIR` to support this.
+
+- Added traits and specifications to define and query entity versioning
+  information.
+  [#48](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/48)
 
 v1.0.0-alpha.6
 --------------
@@ -17,7 +22,7 @@ v1.0.0-alpha.6
 
 - Removed speculative timeline traits pending real-world use cases.
 
-### New Features
+### New features
 
 - Added `openassetio_mediacreation.traits.auth.BearerTokenTrait`.
 
@@ -102,6 +107,6 @@ v1.0.0-alpha.2
 v1.0.0-alpha.1
 --------------
 
-### New Features
+### New features
 
 - Initial release.

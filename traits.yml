@@ -1,11 +1,25 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/OpenAssetIO/OpenAssetIO-TraitGen/main/python/openassetio_traitgen/schema.json
 # yamllint disable-line rule:document-start
 package: openassetio-mediacreation
-
 description: Well-known Traits and Specifications for use in OpenAssetIO
   hosts and managers.
-
 traits:
+  usage:
+    description: >
+      Base traits that scope a trait set for use within a specific
+      context, such as resolution or relationship queries. Exactly
+      one of these should be included in any given Specification.
+    members:
+      Entity:
+        description: The trait set defines qualities of an entity.
+        usage:
+          - entity
+      Relationship:
+        description: >
+          The trait set defines a relationship between one or more
+          entities.
+        usage:
+          - relationship
   content:
     description: Traits related to abstract content.
     members:
@@ -26,13 +40,13 @@ traits:
           location:
             type: string
             description: >
-              The location of the entities external content.
+              The location of the entity's external content.
 
 
-              This must be a valid URL so special characters need to
-              be encoded.
+              This must be a valid URL, so special characters need to
+              be encoded accordingly.
   identity:
-    description: Traits that aid identification of an entity
+    description: Traits that aid the identification of an entity.
     members:
       DisplayName:
         description: >
@@ -45,9 +59,10 @@ traits:
         properties:
           name:
             type: string
-            description: |
+            description: >
               The humanized name of entity itself, not including any
               hierarchy or classification.
+
 
               For example:
               - `"Cuttlefish v1"` - for a version of an asset
@@ -55,20 +70,112 @@ traits:
 
           qualifiedName:
             type: string
-            description: |
-              An unambiguous, humanised name for the entity.
+            description: >
+              An unambiguous, humanized name for the entity.
+
 
               The display name may want to consider the host, and any other
               relevant Context information to form a display name for an
               entity that can uniquely identify the entity in that context.
 
+
               For example:
               - `"dive / build / cuttlefish / model / v1"` for a version
                   of an asset in an 'open recent' menu.
               - `"Sequence 003 [ Dive / Episode 1 ]"` for a sequence in
-                 an hierarchy as a window title.
+                 a hierarchy as a window title.
+  lifecycle:
+    description: >
+      Traits that are concerned with describing aspects of the lifecycle
+      of an entity, such as versioning.
+    members:
+      Version:
+        description: >
+          Describes a specific version of an entity.
 
 
+          A version is defined as a revision or iteration of what is
+          otherwise the same logical entity. If supported by a manager,
+          versions are created when new data is published to an existing
+          entity. Not all managers may version all types of entity.
+
+
+          There is no requirement for version to be a singular atomic
+          series, managers may wish to support "meta versions", such as
+          'vLatest' or similar, or provide multiple parallel versioning
+          streams.
+
+
+          This trait can be used in several places:
+           - When resolved, the manager should provide information about
+             the version of the referenced entity. This trait should only 
+             be imbued if the target entity is considered versioned by the
+             manager, and it can populate the stableTag property.
+           - When responding to managementPolicy for an entity trait set,
+             the manager should imbue this trait if that type of entity
+             is version managed by the manager (not all managers version
+             all types of entity).
+           - When used within a relationship query, this trait indicates
+             that the returned entities should be constrained to other
+             versions of the logical entity targeted by the reference.
+        usage:
+          - entity
+          - relationship
+          - managementPolicy
+        properties:
+          specifiedTag:
+            type: string
+            description: >
+              An unambiguous identifier (tag) for the specific version of 
+              an entity targeted by a specific reference.
+
+
+              Examples of version tags include "1", "v2", "latest".
+
+
+              If the reference itself does not contain a version
+              specifier and relies on dynamic behaviour, then this should
+              be left empty.
+          stableTag:
+            type: string
+            description: >
+              The tag (see 'specifiedTag') targeted by the reference once
+              meta-versions or other dynamic behaviour is applied.
+
+
+              If, for example, references without an explicit version
+              yield the most recent, then this should be set to
+              the tag of that version. When referencing some other
+              semantic state (eg. approval), this should be set to the
+              tag of the concrete version that matches the specific
+              state.
+
+
+              Examples of stable version tags include "1", "v2".
+
+
+              This property should always be set when the Version trait
+              is imbued as part of a resolve response. If the entity is
+              not versioned, then the trait itself should not be imbued.
+      Stable:
+        description: >
+          Defines that the entity references returned from a
+          relationship query with this trait should be devoid of any
+          dynamic behaviour. This includes concepts such as
+          meta-versioning or context-specific variation that results
+          logically different data being supplied.
+
+
+          This is generally used to snapshot/bookmark specific
+          configurations to avoid temporal instability and/or ensure
+          processes are repeatable.
+
+
+          Note: This does not include variations such as regional
+          adaptation of the LocatableContent trait, where the underlying
+          data remains the same.
+        usage:
+          - relationship
   managementPolicy:
     description: Traits used in a Manager's managementPolicy response.
     members:
@@ -89,7 +196,7 @@ traits:
               like the opportunity to manage the data, but the user should
               still be presented with standard Host UI for the type as an
               option.
-            * If  the "exclusive" property is set to true, then the Manager
+            * If the "exclusive" property is set to true, then the Manager
               takes exclusive control over data with the queried trait set,
               and any standard host interfaces etc should be suppressed.
         usage:
@@ -109,7 +216,6 @@ traits:
 
               If False, then standard host controls can be presented in
               addition to any custom manager UI.
-
       ResolvesFutureEntities:
         description: >
           A trait indicating a manager can potentially resolve the
@@ -131,7 +237,23 @@ traits:
           determine a suitable output location.
         usage:
           - managementPolicy
-
+  relationship:
+    description: Traits specific to qualities of a relationship.
+    members:
+      Singular:
+        description: >
+          The relationship should return at most one reference for each
+          input. Unless otherwise qualified, relationships are
+          considered one-to-many.
+        usage:
+          - relationship
+      Unbounded:
+        description: >
+          The relationship may return large numbers of results for each
+          input, and so must be used with the paged API methods, such as
+          Manager.getWithRelationshipPaged.
+        usage:
+          - relationship
   auth:
     description: Traits related to authentication and authorization.
     members:
@@ -146,3 +268,58 @@ traits:
             type: string
             description: >
               Contents of the token.
+specifications:
+  lifecycle:
+    description:
+      Specifications that are concerned with describing aspects of the
+      lifecycle of an entity, such as versioning.
+    members:
+      EntityVersionsRelationship:
+        description: >
+          A relationship between alternate versions of the same logical
+          entity. This may include unstable versions such as "latest".
+        traitSet:
+          - namespace: usage
+            name: Relationship
+          - namespace: relationship
+            name: Unbounded
+          - namespace: lifecycle
+            name: Version
+        usage:
+          - relationship
+      StableEntityVersionsRelationship:
+        description: >
+          Retrieves references to alternate stable versions of the same
+          logical entity. This will not include unstable versions such
+          as "latest".
+        traitSet:
+          - namespace: usage
+            name: Relationship
+          - namespace: relationship
+            name: Unbounded
+          - namespace: lifecycle
+            name: Version
+          - namespace: lifecycle
+            name: Stable
+        usage:
+          - relationship
+      StableReferenceRelationship:
+        description: >
+          Retrieves a stable reference to the supplied entity that is
+          guaranteed to always point to that specific entity and version.
+
+
+          This will apply and remove any dynamic behaviour such as
+          "latest version" or other context-sensitive behaviour. The
+          result may be used as a persistent bookmark (such as in an
+          "open recent" menu), or to snapshot the specific entities used
+          by a process for archival.
+        traitSet:
+          - namespace: usage
+            name: Relationship
+          - namespace: relationship
+            name: Singular
+          - namespace: lifecycle
+            name: Stable
+        usage:
+          - relationship
