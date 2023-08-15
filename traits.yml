@@ -134,8 +134,10 @@ traits:
 
 
               If the reference itself does not contain a version
-              specifier and relies on dynamic behaviour, then this should
-              be left empty.
+              specifier and relies on dynamic behaviour, this will be
+              set to a tag that produces equivalent behaviour. This can
+              then be used for user presentation or as a filter with a
+              relationship query.
           stableTag:
             type: string
             description: >
@@ -144,9 +146,9 @@ traits:
 
 
               If, for example, references without an explicit version
-              yield the most recent, then this should be set to
+              yield the most recent, then this would be set to
               the tag of that version. When referencing some other
-              semantic state (eg. approval), this should be set to the
+              semantic state (eg. approval), this would be set to the
               tag of the concrete version that matches the specific
               state.
 
@@ -160,7 +162,7 @@ traits:
       Stable:
         description: >
           Defines that the entity references returned from a
-          relationship query with this trait should be devoid of any
+          relationship query with this trait must be devoid of any
           dynamic behaviour. This includes concepts such as
           meta-versioning or context-specific variation that results
           logically different data being supplied.
@@ -278,6 +280,8 @@ specifications:
         description: >
           A relationship between alternate versions of the same logical
           entity. This may include unstable versions such as "latest".
+          Results will be ordered with the most relevant first. This
+          is usually reverse chronological order.
         traitSet:
           - namespace: usage
             name: Relationship
