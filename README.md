@@ -1,6 +1,6 @@
 # OpenAssetIO-MediaCreation
 
-OpenAssetIO extensions for use in Media Creation
+A library of OpenAssetIO extensions for use in Media Creation workflows.
 
 > Note: This repository is currently in a pre-alpha state, and so should
 > not be used for any production critical applications.
@@ -12,6 +12,26 @@ see the [OpenAssetIO docs](https://openassetio.github.io/OpenAssetIO).
 MediaCreation is an automatically generated Python package,
 [openassetio-traitgen](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen)
 is used to generate trait implementations based on [traits.yml](traits.yml)
+
+## Examples
+
+Code samples of how the Media Creation Traits and Specifications can be
+used in production workflows are available in the [examples](./examples)
+directory in form of [Jupyter](https://jupyter.org) notebooks.
+
+When [viewed in GitHub](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/tree/main/examples)
+they will be fully rendered. They can also be explored locally:
+
+```bash
+git clone https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation.git
+cd OpenAssetIO-MediaCreation
+python -m venv .venv
+. ./.venv/bin/activate
+python -m pip install .
+python -m pip install -r examples/resources/requirements.txt
+cd examples
+jupyter notebook
+```
 
 ## Project status
 
