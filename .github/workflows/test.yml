@@ -99,3 +99,34 @@ jobs:
         run: |
           python -m pip install -r tests/python/requirements.txt
           PYTHONPATH=$(pwd)/build/dist/hybridpython python -m pytest -v
+
+  disallowed_pip_install:
+    name: Disallowed pip install
+    runs-on: ubuntu-latest
+    container:
+      image: aswf/ci-vfxall:2022-clang14.3
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Traitgen
+        run: python -m pip install openassetio-traitgen==1.0.0a7
+
+      - name: Set Python Root Dir
+        run: echo "Python_ROOT_DIR=$(python -c 'import sys; print(sys.prefix)')" >> $GITHUB_ENV
+
+      - name: Configure CMake build
+        run: >
+          cmake -S . -B build --install-prefix $Python_ROOT_DIR -DOPENASSETIO_MEDIACREATION_GENERATE_PYTHON=ON
+
+      - name: Install package
+        run: cmake --install build
+
+      - name: Attempt to install using pip
+        # The runner has pipefail set, so if either the pip install
+        # succeeds (inverted via `!`) or the grep fails, then the step
+        # will fail.
+        run: >
+          ! python -m pip install --upgrade --force-reinstall openassetio-mediacreation 2>&1
+          | grep "The package was installed by cmake"
+        shell: bash

@@ -10,6 +10,15 @@ v1.0.0-alpha.x
   compatibility with `openassetio` `v1.0.0a14`.
   [#60](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/60)
 
+- Added some protection for accidental overwrites of a CMake installed
+  `openassetio-mediacreation` Python package, by installing a
+  `.dist-info` metadata directory alongside the package. `pip install`
+  will then fail/warn against accidental overwrites/overrides. Added a
+  CMake variable
+  `OPENASSETIO_MEDIACREATION_ENABLE_PYTHON_INSTALL_DIST_INFO` to disable
+  this feature.
+  [#58](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/58)
+
 v1.0.0-alpha.7
 --------------
 

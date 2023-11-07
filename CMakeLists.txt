@@ -22,6 +22,12 @@ if (OPENASSETIO_MEDIACREATION_GENERATE_PYTHON)
         ""
         CACHE STRING
         "Override default Python module install directory, relative to CMAKE_INSTALL_PREFIX")
+
+    set(OPENASSETIO_MEDIACREATION_ENABLE_PYTHON_INSTALL_DIST_INFO_desc
+    "Create a dist-info metadata directory alongside Python installation to provide"
+    " discoverability and prevent overwrite by package managers such as pip")
+    option(OPENASSETIO_MEDIACREATION_ENABLE_PYTHON_INSTALL_DIST_INFO
+        "${OPENASSETIO_MEDIACREATION_ENABLE_PYTHON_INSTALL_DIST_INFO_desc}" ON)
 endif ()
 
 message(STATUS "Test enabled = ${OPENASSETIO_MEDIACREATION_ENABLE_TEST}")
@@ -130,7 +136,7 @@ write_basic_package_version_file(${_version_config_file}
                                 COMPATIBILITY SameMajorVersion)
 
 configure_package_config_file(
-    cmake/Config.cmake.in
+    cmake/packaging/Config.cmake.in
     ${_project_config_file}
     INSTALL_DESTINATION ${_config_install_dir}
 )
@@ -152,6 +158,36 @@ if (OPENASSETIO_MEDIACREATION_GENERATE_PYTHON)
         DESTINATION "${OPENASSETIO_MEDIACREATION_PYTHON_SITEDIR}"
         FILES_MATCHING PATTERN "*.py"
     )
+
+    #-------------------------------------------------------------------
+    # Install dist-info into the Python environment, to prevent
+    # accidental overwrite, e.g. pip.
+
+    if (OPENASSETIO_MEDIACREATION_ENABLE_PYTHON_INSTALL_DIST_INFO)
+        file(READ pyproject.toml _pyproject_toml)
+        string(REGEX MATCH [[version *= *"([^"]+)"]] _unused "${_pyproject_toml}")
+        set(OPENASSETIO_MEDIACREATION_PYTHON_PKG_VERSION ${CMAKE_MATCH_1})
+        if (NOT OPENASSETIO_MEDIACREATION_PYTHON_PKG_VERSION)
+            message(FATAL_ERROR "Failed to parse version from pyproject.toml")
+        endif ()
+        set(_dist_info_dir_name
+            openassetio_mediacreation-${OPENASSETIO_MEDIACREATION_PYTHON_PKG_VERSION}.dist-info)
+        file(
+            COPY
+            "${PROJECT_SOURCE_DIR}/cmake/packaging/python.dist-info/INSTALLER"
+            "${PROJECT_SOURCE_DIR}/cmake/packaging/python.dist-info/REQUESTED"
+            "${PROJECT_SOURCE_DIR}/cmake/packaging/python.dist-info/top_level.txt"
+            DESTINATION "${_dist_info_dir_name}"
+        )
+        configure_file(
+            "${PROJECT_SOURCE_DIR}/cmake/packaging/python.dist-info/METADATA.in"
+            "${_dist_info_dir_name}/METADATA"
+        )
+        install(
+            DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${_dist_info_dir_name}"
+            DESTINATION "${OPENASSETIO_MEDIACREATION_PYTHON_SITEDIR}"
+        )
+    endif ()
 endif()
 
 #-----------------------------------------------------------------------
