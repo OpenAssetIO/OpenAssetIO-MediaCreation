@@ -4,7 +4,7 @@
 [build-system]
 requires = [
     "setuptools>=65.5.0",
-    "openassetio-traitgen>=1.0.0a6"
+    "openassetio-traitgen==1.0.0a7"
 ]
 build-backend = "setuptools.build_meta"
 
