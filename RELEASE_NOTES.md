@@ -1,6 +1,15 @@
 Release Notes
 =============
 
+v1.0.0-alpha.x
+--------------
+
+### Improvements
+
+- Pinned `openassetio-traitgen` to `v1.0.0a7` to ensure backwards
+  compatibility with `openassetio` `v1.0.0a14`.
+  [#60](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/60)
+
 v1.0.0-alpha.7
 --------------
 
