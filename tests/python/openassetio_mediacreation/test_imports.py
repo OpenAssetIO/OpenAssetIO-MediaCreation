@@ -63,3 +63,56 @@ class Test_trait_imports_auth:
 
     def test_importing_BearerToken_succeeds(self):
         from openassetio_mediacreation.traits.auth import BearerTokenTrait
+
+
+class Test_trait_imports_usage:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import usage
+
+    def test_importing_Entity_succeeds(self):
+        from openassetio_mediacreation.traits.usage import EntityTrait
+
+    def test_importing_Relationship_succeeds(self):
+        from openassetio_mediacreation.traits.usage import RelationshipTrait
+
+
+class Test_trait_imports_lifecycle:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import lifecycle
+
+    def test_importing_Version_succeeds(self):
+        from openassetio_mediacreation.traits.lifecycle import VersionTrait
+
+    def test_importing_Stable_succeeds(self):
+        from openassetio_mediacreation.traits.lifecycle import StableTrait
+
+
+class Test_trait_imports_relationship:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import relationship
+
+    def test_importing_Singular_succeeds(self):
+        from openassetio_mediacreation.traits.relationship import SingularTrait
+
+    def test_importing_Unbounded_succeeds(self):
+        from openassetio_mediacreation.traits.relationship import UnboundedTrait
+
+
+class Test_specification_imports_lifecycle:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.specifications import lifecycle
+
+    def test_importing_EntityVersionsRelationship_succeeds(self):
+        from openassetio_mediacreation.specifications.lifecycle import (
+            EntityVersionsRelationshipSpecification,
+        )
+
+    def test_importing_StableEntityVersionsRelationship_succeeds(self):
+        from openassetio_mediacreation.specifications.lifecycle import (
+            StableEntityVersionsRelationshipSpecification,
+        )
+
+    def test_importing_StableReferenceRelationship_succeeds(self):
+        from openassetio_mediacreation.specifications.lifecycle import (
+            StableReferenceRelationshipSpecification,
+        )
