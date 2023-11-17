@@ -218,27 +218,6 @@ traits:
 
               If False, then standard host controls can be presented in
               addition to any custom manager UI.
-      ResolvesFutureEntities:
-        description: >
-          A trait indicating a manager can potentially resolve the
-          supplied trait set for future entities.
-
-
-          If not imbued, the manager is not capable of determining data
-          in advance for new entities, and is only capable of resolving
-          traits for exising ones.
-
-
-          An example of this would be the ability to resolve a
-          LocatableContentTrait in advance, to determine where new data
-          should be written. When this trait imbued in the
-          managementPolicy response, a host may attempt to resolve the
-          locatableContent trait of a working entity reference supplied by
-          preflight in order to determine a suitable output path before
-          work is done. In its absence, a host must use alternate means to
-          determine a suitable output location.
-        usage:
-          - managementPolicy
   relationship:
     description: Traits specific to qualities of a relationship.
     members:
