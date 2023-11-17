@@ -1,0 +1,74 @@
+{
+  "managementPolicy": {
+    "read": {
+      "default": {
+        "openassetio-mediacreation:managementPolicy.Managed": {},
+        "openassetio-mediacreation:content.LocatableContent": {},
+        "openassetio-mediacreation:identity.DisplayName": {},
+        "openassetio-mediacreation:lifecycle.Version": {}
+      }
+    },
+    "write": {
+      "default": {
+        "openassetio-mediacreation:managementPolicy.Managed": {},
+        "openassetio-mediacreation:content.LocatableContent": {},
+        "openassetio-mediacreation:identity.DisplayName": {}
+      }
+    },
+    "managerDriven": {
+      "default": {
+        "openassetio-mediacreation:managementPolicy.Managed": {},
+        "openassetio-mediacreation:content.LocatableContent": {},
+        "openassetio-mediacreation:identity.DisplayName": {}
+      }
+    }
+  },
+  "entities": {
+    "project_artwork/logos/openassetio": {
+      "versions": [],
+      "overrideByAccess": {
+        "read": {
+          "traits": {
+            "openassetio-mediacreation:usage.Entity": {},
+            "openassetio-mediacreation:twoDimensional.Image": {},
+            "openassetio-mediacreation:identity.DisplayName": {
+              "name": "openassetio logo"
+            },
+            "openassetio-mediacreation:content.LocatableContent": {
+              "location": "file:///mnt/shows/artwork/logos/openassetio.png"
+            },
+            "openassetio-mediacreation:timeDomain.FrameRanged": {}
+          }
+        },
+        "write": {
+          "traits": {
+            "openassetio-mediacreation:usage.Entity": {},
+            "openassetio-mediacreation:twoDimensional.Image": {},
+            "openassetio-mediacreation:content.LocatableContent": {
+              "location": "file:///mnt/shows/artwork/logos/openassetio.png"
+            }
+          }
+        }
+      }
+    },
+    "project_artwork/logos/openassetio/approved": {
+      "versions": [],
+      "overrideByAccess": {
+        "read": {
+          "traits": {
+            "openassetio-mediacreation:usage.Entity": {},
+            "openassetio-mediacreation:twoDimensional.Image": {},
+            "openassetio-mediacreation:identity.DisplayName": {
+              "name": "openassetio logo"
+            },
+            "openassetio-mediacreation:content.LocatableContent": {
+              "location": "file:///mnt/shows/artwork/logos/openassetio.png"
+            },
+            "openassetio-mediacreation:timeDomain.FrameRanged": {}
+          }
+        },
+        "write": {}
+      }
+    }
+  }
+}
