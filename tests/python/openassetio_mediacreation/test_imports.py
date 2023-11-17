@@ -65,6 +65,20 @@ class Test_trait_imports_auth:
         from openassetio_mediacreation.traits.auth import BearerTokenTrait
 
 
+class Test_trait_imports_application:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import application
+
+    def test_importing_Config_succeeds(self):
+        from openassetio_mediacreation.traits.application import ConfigTrait
+
+    def test_importing_Manifest_succeeds(self):
+        from openassetio_mediacreation.traits.application import ManifestTrait
+
+    def test_importing_Work_succeeds(self):
+        from openassetio_mediacreation.traits.application import WorkTrait
+
+
 class Test_trait_imports_usage:
     def test_importing_namespace_succeeds(self):
         from openassetio_mediacreation.traits import usage
@@ -98,6 +112,103 @@ class Test_trait_imports_relationship:
         from openassetio_mediacreation.traits.relationship import UnboundedTrait
 
 
+class Test_trait_imports_representation:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import representation
+
+    def test_importing_Proxy_succeeds(self):
+        from openassetio_mediacreation.traits.representation import ProxyTrait
+
+    def test_importing_Original_succeeds(self):
+        from openassetio_mediacreation.traits.representation import OriginalTrait
+
+
+class Test_trait_imports_timeDomain:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import timeDomain
+
+    def test_importing_FrameRanged_succeeds(self):
+        from openassetio_mediacreation.traits.timeDomain import FrameRangedTrait
+
+    def test_importing_Static_succeeds(self):
+        from openassetio_mediacreation.traits.timeDomain import StaticTrait
+
+
+class Test_trait_imports_twoDimensional:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import twoDimensional
+
+    def test_importing_Image_succeeds(self):
+        from openassetio_mediacreation.traits.twoDimensional import ImageTrait
+
+    def test_importing_PixelBased_succeeds(self):
+        from openassetio_mediacreation.traits.twoDimensional import PixelBasedTrait
+
+    def test_importing_Deep_succeeds(self):
+        from openassetio_mediacreation.traits.twoDimensional import DeepTrait
+
+
+class Test_trait_imports_threeDimensional:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import threeDimensional
+
+    def test_importing_Spatial_succeeds(self):
+        from openassetio_mediacreation.traits.threeDimensional import SpatialTrait
+
+    def test_importing_GeometryTrait_succeeds(self):
+        from openassetio_mediacreation.traits.threeDimensional import GeometryTrait
+
+    def test_importing_Lighting_succeeds(self):
+        from openassetio_mediacreation.traits.threeDimensional import LightingTrait
+
+    def test_importing_Shader_succeeds(self):
+        from openassetio_mediacreation.traits.threeDimensional import ShaderTrait
+
+    def test_importing_IESProfile_succeeds(self):
+        from openassetio_mediacreation.traits.threeDimensional import IESProfileTrait
+
+    def test_importing_SourcePath_succeeds(self):
+        from openassetio_mediacreation.traits.threeDimensional import SourcePathTrait
+
+    def test_importing_SourcePaths_succeeds(self):
+        from openassetio_mediacreation.traits.threeDimensional import SourcePathsTrait
+
+
+class Test_trait_imports_metadata:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import metadata
+
+    def test_importing_Camera_succeeds(self):
+        from openassetio_mediacreation.traits.metadata import ArbitraryMetadataTrait
+
+
+class Test_trait_imports_imaging:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import imaging
+
+    def test_importing_Camera_succeeds(self):
+        from openassetio_mediacreation.traits.imaging import CameraTrait
+
+
+class Test_trait_imports_color:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import color
+
+    def test_importing_Camera_succeeds(self):
+        from openassetio_mediacreation.traits.color import OCIOColorManagedTrait
+
+
+class Test_trait_imports_audio:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.traits import audio
+
+    def test_importing_Audio_succeeds(self):
+        from openassetio_mediacreation.traits.audio import AudioTrait
+
+    def test_importing_SampleBased_succeeds(self):
+        from openassetio_mediacreation.traits.audio import SampleBasedTrait
+
+
 class Test_specification_imports_lifecycle:
     def test_importing_namespace_succeeds(self):
         from openassetio_mediacreation.specifications import lifecycle
@@ -116,3 +227,95 @@ class Test_specification_imports_lifecycle:
         from openassetio_mediacreation.specifications.lifecycle import (
             StableReferenceRelationshipSpecification,
         )
+
+
+class Test_specification_imports_representation:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.specifications import representation
+
+    def test_importing_OriginalRepresentationRelationship_succeeds(self):
+        from openassetio_mediacreation.specifications.representation import (
+            OriginalRepresentationRelationshipSpecification,
+        )
+
+    def test_importing_ProxyRepresentationRelationship_succeeds(self):
+        from openassetio_mediacreation.specifications.representation import (
+            ProxyRepresentationRelationshipSpecification,
+        )
+
+
+class Test_specification_imports_twoDimenstional:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.specifications import twoDimensional
+
+    def test_importing_Image_succeeds(self):
+        from openassetio_mediacreation.specifications.twoDimensional import ImageSpecification
+
+    def test_importing_BitmapImageResource_succeeds(self):
+        from openassetio_mediacreation.specifications.twoDimensional import (
+            BitmapImageResourceSpecification,
+        )
+
+    def test_importing_DeepBitmapImageResource_succeeds(self):
+        from openassetio_mediacreation.specifications.twoDimensional import (
+            DeepBitmapImageResourceSpecification,
+        )
+
+
+class Test_specification_imports_threeDimenstional:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.specifications import threeDimensional
+
+    def test_importing_Spatial_succeeds(self):
+        from openassetio_mediacreation.specifications.threeDimensional import SpatialSpecification
+
+    def test_importing_SceneResource_succeeds(self):
+        from openassetio_mediacreation.specifications.threeDimensional import (
+            SceneResourceSpecification,
+        )
+
+    def test_importing_SceneGeometryResource_succeeds(self):
+        from openassetio_mediacreation.specifications.threeDimensional import (
+            SceneGeometryResourceSpecification,
+        )
+
+    def test_importing_SceneCameraResource_succeeds(self):
+        from openassetio_mediacreation.specifications.threeDimensional import (
+            SceneCameraResourceSpecification,
+        )
+
+    def test_importing_SceneLightingResource_succeeds(self):
+        from openassetio_mediacreation.specifications.threeDimensional import (
+            SceneLightingResourceSpecification,
+        )
+
+    def test_importing_ShaderResource_succeeds(self):
+        from openassetio_mediacreation.specifications.threeDimensional import (
+            ShaderResourceSpecification,
+        )
+
+    def test_importing_IESProfileResource_succeeds(self):
+        from openassetio_mediacreation.specifications.threeDimensional import (
+            IESProfileResourceSpecification,
+        )
+
+
+class Test_specification_imports_audio:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.specifications import audio
+
+    def test_importing_Audio_succeeds(self):
+        from openassetio_mediacreation.specifications.audio import AudioSpecification
+
+    def test_importing_SampledAudioResource_succeeds(self):
+        from openassetio_mediacreation.specifications.audio import (
+            SampledAudioResourceSpecification,
+        )
+
+
+class Test_specification_imports_application:
+    def test_importing_namespace_succeeds(self):
+        from openassetio_mediacreation.specifications import application
+
+    def test_importing_workfile_succeeds(self):
+        from openassetio_mediacreation.specifications.application import WorkfileSpecification
