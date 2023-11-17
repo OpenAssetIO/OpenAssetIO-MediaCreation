@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2023 The Foundry Visionmongers Ltd
+
+name: Examples
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-notebooks:
+    name: "Test Notebooks ${{ matrix.os }} python-${{ matrix.python }}"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["windows-latest", "ubuntu-latest", "macos-latest"]
+        python: ["3.7", "3.9", "3.10"]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install Dependencies
+        run: |
+          python -m pip install .
+          python -m pip install -r examples/resources/requirements.txt
+      - name: Test Notebooks
+        run: jupyter nbconvert --to html --execute examples/*.ipynb
