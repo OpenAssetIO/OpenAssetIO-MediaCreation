@@ -4,6 +4,14 @@ Release Notes
 v1.0.0-alpha.x
 --------------
 
+### Breaking changes
+
+- Removed the `ResolvesFutureEntities` trait in favour of the [core API
+  mechanism](https://github.com/OpenAssetIO/OpenAssetIO/issues/1209) for
+  determining which traits can be resolved for future entities by any
+  given manager.
+  [#67](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/67)
+
 ### Improvements
 
 - Pinned `openassetio-traitgen` to `v1.0.0a7` to ensure backwards
