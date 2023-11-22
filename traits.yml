@@ -108,7 +108,7 @@ traits:
 
           This trait can be used in several places:
            - When resolved, the manager should provide information about
-             the version of the referenced entity. This trait should only 
+             the version of the referenced entity. This trait should only
              be imbued if the target entity is considered versioned by the
              manager, and it can populate the stableTag property.
            - When responding to managementPolicy for an entity trait set,
@@ -126,7 +126,7 @@ traits:
           specifiedTag:
             type: string
             description: >
-              An unambiguous identifier (tag) for the specific version of 
+              An unambiguous identifier (tag) for the specific version of
               an entity targeted by a specific reference.
 
 
