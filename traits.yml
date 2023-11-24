@@ -86,8 +86,8 @@ traits:
                  a hierarchy as a window title.
   lifecycle:
     description: >
-      Traits that are concerned with describing aspects of the lifecycle
-      of an entity, such as versioning.
+      Traits that are concerned with describing aspects of the life
+      cycle of an entity, such as versioning.
     members:
       Version:
         description: >
@@ -211,7 +211,7 @@ traits:
               the supplied trait set.
 
 
-              If True, then standard host contols should be disabled
+              If True, then standard host controls should be disabled
               in favour of manager delegated UI. For example, file system
               browsers when determining where to load/save data.
 
@@ -253,7 +253,7 @@ specifications:
   lifecycle:
     description:
       Specifications that are concerned with describing aspects of the
-      lifecycle of an entity, such as versioning.
+      life cycle of an entity, such as versioning.
     members:
       EntityVersionsRelationship:
         description: >
