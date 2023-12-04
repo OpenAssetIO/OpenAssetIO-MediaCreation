@@ -1,17 +1,29 @@
 # OpenAssetIO-MediaCreation
 
 A library of OpenAssetIO extensions for use in Media Creation workflows.
+Covering images, three-dimenstional models, versioning, proxy
+relationships and more.
 
-> Note: This repository is currently in a pre-alpha state, and so should
-> not be used for any production critical applications.
+> **Warning:**
+> This repository is currently in a beta state, and so should
+> be used in production critical applications with caution.
 
 Included are several well-known Traits and Specifications for use in
-OpenAssetIO hosts and managers. For more information on this mechanism,
-see the [OpenAssetIO docs](https://openassetio.github.io/OpenAssetIO).
+Digital Content Creation tools and wth Asset Management Systems found in
+the media production space. For more information on the Traits and
+Specifications mechanism, see the [OpenAssetIO
+docs](https://openassetio.github.io/OpenAssetIO).
 
-MediaCreation is an automatically generated Python package,
+The project attempts to align with relevant industry standards wherever
+possible or appicable, incuding:
+
+- The [MovieLabs Ontology](https://movielabs.com/production-technology/ontology-for-media-creation/).
+- The [OpenUSD data model](https://www.openusd.org).
+
+MediaCreation is an automatically generated Python/C++ package,
 [openassetio-traitgen](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen)
-is used to generate trait implementations based on [traits.yml](traits.yml)
+is used to generate trait implementations based on
+[traits.yml](traits.yml).
 
 ## Examples
 
@@ -37,14 +49,17 @@ jupyter notebook
 
 These initial incarnations of traits/specifications serve as
 illustrative examples to facilitate discussion and experimentation.
-Pending tasks:
+Pending tasks required to reach a stable `v1.0`:
 
 - [x] Define YAML schema to represent traits/specifications.
 - [x] Auto-generate Python classes from YAML
 - [x] Auto-generate CPP classes from YAML
-- [ ] Auto-generate C classes from YAML.
-- [ ] Extend library to cover common post-production entities and
+- [x] Extend library to cover common post-production entities and
       locales.
+- [ ] Define how [change is managed](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/65)
+      within the library.
+- [ ] Determine if there is a neccesary [mechanism for extending
+      existing Specifications](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/65).
 
 ## Installation
 
@@ -113,6 +128,7 @@ welcome!
 
 When adding new Traits and Specifications:
 
+0. Review the [guidelines](GUIDELINES.md)
 1. Update [traits.yml](traits.yml)
 2. Add an [import test](tests/python/openassetio_mediacreation/test_imports.py)
 3. Update the [RELEASE_NOTES](RELEASE_NOTES.md)

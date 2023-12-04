@@ -1,8 +1,14 @@
 Release Notes
 =============
 
-v1.0.0-alpha.x
---------------
+v1.0.0-beta.x
+---------------
+
+### New features
+
+- Added numerous Traits and Specifications for common post-production
+  workflows.
+  [#22](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/22)
 
 ### Breaking changes
 
@@ -26,6 +32,10 @@ v1.0.0-alpha.x
   `OPENASSETIO_MEDIACREATION_ENABLE_PYTHON_INSTALL_DIST_INFO` to disable
   this feature.
   [#58](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/58)
+
+- Added `mimeType` and `isTemplated` properties to the
+  `LocatableContentTrait` to aid loading of the referenced content.
+  [#22](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/22)
 
 v1.0.0-alpha.7
 --------------
