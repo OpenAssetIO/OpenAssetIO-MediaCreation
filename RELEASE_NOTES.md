@@ -1,8 +1,8 @@
 Release Notes
 =============
 
-v1.0.0-beta.x
----------------
+v1.0.0-alpha.8
+--------------
 
 ### New features
 
