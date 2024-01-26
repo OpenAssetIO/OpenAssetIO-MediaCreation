@@ -1,5 +1,5 @@
 jupyter
-openassetio>=v1.0.0b1rev0
+openassetio>=v1.0.0b2rev0
 openassetio-manager-bal>=v1.0.0a14
 openassetio-mediacreation
 Pillow
