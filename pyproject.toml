@@ -10,9 +10,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "openassetio-mediacreation"
-version = "1.0.0a7"
+version = "1.0.0b1.post0"
 requires-python = ">=3.7"
-dependencies = ["openassetio>=1.0.0a6"]
+dependencies = ["openassetio>=1.0.0b2"]
 
 authors = [
     { name = "Contributors to the OpenAssetIO project", email = "openassetio-discussion@lists.aswf.io" }
@@ -20,7 +20,7 @@ authors = [
 
 keywords = ["openassetio", "mediacreation", "trait"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Apache Software License",
     "Natural Language :: English",
@@ -37,7 +37,7 @@ text = """\
 
 OpenAssetIO extensions for use in Media Creation
 
-> Note: This repository is currently in a pre-alpha state, and so should
+> Note: This repository is currently in a beta state, and so should
 > not be used for any production critical applications.
 
 Included are several well-known Traits and Specifications for use in
@@ -45,8 +45,6 @@ OpenAssetIO hosts and managers. For more information on this mechanism,
 see the [OpenAssetIO docs](https://openassetio.github.io/OpenAssetIO/).
 """
 content-type = "text/markdown"
-
-dependencies = ["openassetio>=1.0.0a6"]
 
 [tool.setuptools]
 packages = ["openassetio_mediacreation"]
