@@ -10,9 +10,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "openassetio-mediacreation"
-version = "1.0.0a7"
+version = "1.0.0a8"
 requires-python = ">=3.7"
-dependencies = ["openassetio>=1.0.0a6"]
+dependencies = ["openassetio>=1.0.0b2"]
 
 authors = [
     { name = "Contributors to the OpenAssetIO project", email = "openassetio-discussion@lists.aswf.io" }
@@ -45,8 +45,6 @@ OpenAssetIO hosts and managers. For more information on this mechanism,
 see the [OpenAssetIO docs](https://openassetio.github.io/OpenAssetIO/).
 """
 content-type = "text/markdown"
-
-dependencies = ["openassetio>=1.0.0a6"]
 
 [tool.setuptools]
 packages = ["openassetio_mediacreation"]
