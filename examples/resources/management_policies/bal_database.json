@@ -1,0 +1,45 @@
+{
+  "managementPolicy": {
+    "read": {
+      "default": {
+        "openassetio-mediacreation:managementPolicy.Managed": {},
+        "openassetio-mediacreation:content.LocatableContent": {}
+      }
+    },
+    "write": {
+      "default": {
+        "openassetio-mediacreation:managementPolicy.Managed": {},
+        "openassetio-mediacreation:content.LocatableContent": {},
+        "openassetio-mediacreation:twoDimensional.PixelBased": {},
+        "openassetio-mediacreation:color.OCIOColorManaged": {}
+      }
+    },
+    "required": {
+      "default": {
+        "openassetio-mediacreation:managementPolicy.Managed": {},
+        "openassetio-mediacreation:content.LocatableContent": {},
+        "openassetio-mediacreation:color.OCIOColorManaged": {}
+      }
+    },
+    "managerDriven": {
+      "default": {
+        "openassetio-mediacreation:managementPolicy.Managed": {},
+        "openassetio-mediacreation:content.LocatableContent": {}
+      }
+    }
+  },
+  "entities": {
+    "project/renders/myrender": {
+      "versions": [
+        {
+          "traits": {
+            "openassetio-mediacreation:content.LocatableContent": {
+              "location": "file:///mnt/staging/renders/myrender.exr"
+            }
+          },
+          "supported_access_modes": ["managerDriven"]
+        }
+      ]
+    }
+  }
+}
