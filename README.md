@@ -122,7 +122,7 @@ ctest --test-dir build/tests/cpp
 
 ## Contributing
 
-This repository follows the [contribution guidelines](https://github.com/TheFoundryVisionmongers/OpenAssetIO/blob/main/contributing/PROCESS.md)
+This repository follows the [contribution guidelines](https://github.com/OpenAssetIO/OpenAssetIO/blob/main/doc/contributing/PROCESS.md)
 outlined in the main OpenAssetIO repository. All discussion most
 welcome!
 
