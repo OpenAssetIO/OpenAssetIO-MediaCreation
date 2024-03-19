@@ -4,13 +4,13 @@
 [build-system]
 requires = [
     "setuptools>=65.5.0",
-    "openassetio-traitgen==1.0.0a7"
+    "openassetio-traitgen==1.0.0a9"
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "openassetio-mediacreation"
-version = "1.0.0a8"
+version = "1.0.0a9"
 requires-python = ">=3.7"
 dependencies = ["openassetio>=1.0.0b2"]
 

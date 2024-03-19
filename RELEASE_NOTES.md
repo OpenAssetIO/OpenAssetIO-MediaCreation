@@ -1,6 +1,15 @@
 Release Notes
 =============
 
+v1.0.0-alpha.9
+---------------
+
+### Improvements
+
+- Update `openassetio-traitgen` to `v1.0.0a9`, which changes exceptions
+  in generated types to instead be handled via `std::optional`.
+  [#74](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen/issues/74)
+
 v1.0.0-alpha.8
 ---------------
 
