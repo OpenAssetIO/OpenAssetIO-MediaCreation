@@ -9,7 +9,7 @@
               "qualifiedName": "logos / openassetio / v1"
             },
             "openassetio-mediacreation:content.LocatableContent": {
-              "location": "file://${bal_library_dir}/logo.jpg"
+              "location": "file:///some/path/to/logo.jpg"
             }
           }
         }
