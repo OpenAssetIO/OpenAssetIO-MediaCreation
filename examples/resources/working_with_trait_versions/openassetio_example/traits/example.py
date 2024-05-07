@@ -12,12 +12,14 @@ from typing import Union
 from openassetio.trait import TraitsData
 
 
-class RemovedTrait:
+class DeprecatedTrait_v1:
     """
     An example.
     Usage: entity, locale, relationship
     """
-    kId = "openassetio-example:example.Removed.v1"
+    kId = "openassetio-example:example.Deprecated.v001"
+
+    __deprecated__ = True  # (Eventually use PEP 702)
 
     def __init__(self, traitsData):
         """
@@ -65,14 +67,16 @@ class RemovedTrait:
         traitsData.addTrait(cls.kId)
 
 
+# Alias for latest version.
+DeprecatedTrait = DeprecatedTrait_v1
 
 
-class UnchangedTrait:
+class UpdatedTrait_v2:
     """
     An example.
     Usage: entity, locale, relationship
     """
-    kId = "openassetio-example:example.Unchanged.v1"
+    kId = "openassetio-example:example.Updated.v002"
 
     def __init__(self, traitsData):
         """
@@ -120,14 +124,95 @@ class UnchangedTrait:
         traitsData.addTrait(cls.kId)
 
 
+    def setPropertyThatWasAdded(self, propertyThatWasAdded: float):
+        """
+        Sets the propertyThatWasAdded property.
+
+        A new property added in the latest version.
+        """
+        if not isinstance(propertyThatWasAdded, float):
+            raise TypeError("propertyThatWasAdded must be a 'float'.")
+        self.__data.setTraitProperty(self.kId, "propertyThatWasAdded", propertyThatWasAdded)
+
+    def getPropertyThatWasAdded(self, defaultValue: float=None) -> Union[float, None]:
+        """
+        Gets the value of the propertyThatWasAdded property or the supplied default.
+
+        A new property added in the latest version.
+        """
+        value = self.__data.getTraitProperty(self.kId, "propertyThatWasAdded")
+        if value is None:
+            return defaultValue
+
+        if not isinstance(value, float):
+            if defaultValue is None:
+                raise TypeError(f"Invalid stored value type: '{type(value).__name__}' should be 'float'.")
+            return defaultValue
+        return value
+
+    def setPropertyThatWasRenamed(self, propertyThatWasRenamed: bool):
+        """
+        Sets the propertyThatWasRenamed property.
+
+        A property that has been renamed.
+        """
+        if not isinstance(propertyThatWasRenamed, bool):
+            raise TypeError("propertyThatWasRenamed must be a 'bool'.")
+        self.__data.setTraitProperty(self.kId, "propertyThatWasRenamed", propertyThatWasRenamed)
+
+    def getPropertyThatWasRenamed(self, defaultValue: bool=None) -> Union[bool, None]:
+        """
+        Gets the value of the propertyThatWasRenamed property or the supplied default.
+
+        A property that has been renamed.
+        """
+        value = self.__data.getTraitProperty(self.kId, "propertyThatWasRenamed")
+        if value is None:
+            return defaultValue
+
+        if not isinstance(value, bool):
+            if defaultValue is None:
+                raise TypeError(f"Invalid stored value type: '{type(value).__name__}' should be 'bool'.")
+            return defaultValue
+        return value
+
+    def setPropertyToKeep(self, propertyToKeep: str):
+        """
+        Sets the propertyToKeep property.
+
+        A property that is unchanged between versions.
+        """
+        if not isinstance(propertyToKeep, str):
+            raise TypeError("propertyToKeep must be a 'str'.")
+        self.__data.setTraitProperty(self.kId, "propertyToKeep", propertyToKeep)
+
+    def getPropertyToKeep(self, defaultValue: str=None) -> Union[str, None]:
+        """
+        Gets the value of the propertyToKeep property or the supplied default.
+
+        A property that is unchanged between versions.
+        """
+        value = self.__data.getTraitProperty(self.kId, "propertyToKeep")
+        if value is None:
+            return defaultValue
+
+        if not isinstance(value, str):
+            if defaultValue is None:
+                raise TypeError(f"Invalid stored value type: '{type(value).__name__}' should be 'str'.")
+            return defaultValue
+        return value
 
 
-class UpdatedTrait:
+# Alias to latest version
+UpdatedTrait = UpdatedTrait_v2
+
+
+class UpdatedTrait_v1:
     """
     An example.
     Usage: entity, locale, relationship
     """
-    kId = "openassetio-example:example.Updated.v1"
+    kId = "openassetio-example:example.Updated.v001"
 
     def __init__(self, traitsData):
         """
@@ -256,4 +341,58 @@ class UpdatedTrait:
         return value
 
 
+class AddedTrait_v1:
+    """
+    An example.
+    Usage: entity, locale, relationship
+    """
+    kId = "openassetio-example:example.Added.v001"
 
+    def __init__(self, traitsData):
+        """
+        Construct this trait view, wrapping the given data.
+
+        @param traitsData @fqref{TraitsData}} "TraitsData" The target
+        data that holds/will hold the traits properties.
+        """
+        self.__data = traitsData
+
+    def isImbued(self):
+        """
+        Checks whether the data this trait has been applied to
+        actually has this trait.
+        @return `True` if the underlying data has this trait, `False`
+        otherwise.
+        """
+        return self.isImbuedTo(self.__data)
+
+    @classmethod
+    def isImbuedTo(cls, traitsData):
+        """
+        Checks whether the given data actually has this trait.
+        @param traitsData: Data to check for trait.
+        @return `True` if the underlying data has this trait, `False`
+        otherwise.
+        """
+        return traitsData.hasTrait(cls.kId)
+
+    def imbue(self):
+        """
+        Adds this trait to the held data.
+
+        If the data already has this trait, it is a no-op.
+        """
+        self.__data.addTrait(self.kId)
+
+    @classmethod
+    def imbueTo(cls, traitsData):
+        """
+        Adds this trait to the provided data.
+
+        If the data already has this trait, it is a no-op.
+        """
+        traitsData.addTrait(cls.kId)
+
+
+# Alias to latest version
+AddedTrait = AddedTrait_v1

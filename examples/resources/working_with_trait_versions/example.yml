@@ -1,0 +1,95 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/OpenAssetIO/OpenAssetIO-TraitGen/main/python/openassetio_traitgen/schema.json
+# yamllint disable-line rule:document-start
+package: openassetio-example
+description: An example traits schema
+
+traits:
+  example:
+    description: Example namespace
+    members:
+
+      Deprecated:
+        deprecated: true
+        versions:
+          1:
+            description: An example.
+            usage:
+            - entity
+            - locale
+            - relationship
+
+      Added:
+        versions:
+          1:
+            description: An example.
+            usage:
+              - entity
+              - locale
+              - relationship
+
+      Updated:
+        versions:
+          1:
+            description: An example.
+            usage:
+              - entity
+              - locale
+              - relationship
+            properties:
+              propertyToKeep:
+                type: string
+                description: A property that is unchanged between versions.
+              propertyToRename:
+                type: boolean
+                description: >
+                  A property that has an inappropriate name and should be renamed in the
+                  next version.
+              propertyToRemove:
+                type: boolean
+                description: A defunct property that should be removed in the next version.
+          2:
+            description: An example.
+            usage:
+              - entity
+              - locale
+              - relationship
+            properties:
+              propertyToKeep:
+                type: string
+                description: A property that is unchanged between versions.
+              propertyThatWasRenamed:
+                type: boolean
+                description: A property that has been renamed.
+              propertyThatWasAdded:
+                type: float
+                description: A new property added in the latest version.
+
+specifications:
+  example:
+    description: Test specifications.
+    members:
+
+      Example:
+        versions:
+          1:
+            description: An example.
+            usage:
+              - entity
+            traitSet:
+              - namespace: example
+                name: Added
+                version: 1
+              - namespace: example
+                name: Updated
+                version: 1
+          2:
+            description: An example.
+            usage:
+              - entity
+            traitSet:
+              - namespace: example
+                name: Added
+                version: 1
+              - namespace: example
+                name: Updated
+                version: 2
