@@ -36,10 +36,12 @@
             "openassetio-mediacreation:content.LocatableContent": {
               "location": "file:///mnt/staging/renders/myrender.exr"
             }
-          },
-          "supported_access_modes": ["managerDriven"]
+          }
         }
-      ]
+      ],
+      "overrideByAccess": {
+        "read": null
+      }
     }
   }
 }
