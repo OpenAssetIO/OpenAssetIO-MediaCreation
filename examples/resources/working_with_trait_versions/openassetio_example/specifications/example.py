@@ -59,12 +59,12 @@ class ExampleSpecification_v2:
         data = TraitsData(cls.kTraitSet)
         return cls(data)
 
-    def deprectatedTrait(self):
+    def addedTrait(self):
         """
         Returns the view for the 'openassetio-example:example.Unchanged' trait wrapped around
         the data held in this instance.
         """
-        return traits.example.DeprecatedTrait_v1(self.traitsData())
+        return traits.example.AddedTrait_v1(self.traitsData())
 
     def updatedTrait(self):
         """
@@ -72,10 +72,6 @@ class ExampleSpecification_v2:
         the data held in this instance.
         """
         return traits.example.UpdatedTrait_v2(self.traitsData())
-
-
-# Alias for latest version.
-ExampleSpecification = ExampleSpecification_v2
 
 
 class ExampleSpecification_v1:
@@ -124,17 +120,20 @@ class ExampleSpecification_v1:
         data = TraitsData(cls.kTraitSet)
         return cls(data)
 
-
-    def deprectatedTrait(self):
+    def addedTrait(self):
         """
         Returns the view for the 'openassetio-example:example.Unchanged' trait wrapped around
         the data held in this instance.
         """
-        return traits.example.DeprecatedTrait_v1(self.traitsData())
+        return traits.example.AddedTrait_v1(self.traitsData())
 
     def updatedTrait(self):
         """
         Returns the view for the 'openassetio-example:example.Updated' trait wrapped around
         the data held in this instance.
         """
-        return traits.example.UpdatedTrait_v1(self.traitsData())
+        return traits.example.UpdatedTrait_v2(self.traitsData())
+
+
+# Alias for first version.
+ExampleSpecification = ExampleSpecification_v1
