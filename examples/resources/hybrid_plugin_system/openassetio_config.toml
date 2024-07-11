@@ -1,0 +1,44 @@
+[manager]
+# Identifier advertised by BAL and SimpleCppManager, overridden using
+# environment variables.
+identifier = "org.openassetio.examples.manager.hybrid"
+
+[manager.settings]
+
+########################################################################
+# BAL settings
+
+# BAL JSON library containing its settings/database.
+#
+# In the JSON config file we:
+# * Set the capabilities to not advertise entityReferenceIdentification,
+#   or resolution, since SimpleCppManager will satisfy those
+#   capabilities (see below).
+# * Note that entityTraitIntrospection is advertised by both managers,
+#   so which manager is used for `entityTraits(...)` API calls depends
+#   on priority order.
+library_path = "${config_dir}/bal_database.json"
+
+# Entity reference format should match. Overridden similarly for
+# SimpleCppManager, below.
+entity_reference_url_scheme = "examplehybrid"
+
+########################################################################
+# SimpleCppManager settings:
+
+# Entity reference format should match. Overridden similarly for BAL,
+# above.
+prefix = "examplehybrid:///"
+
+# SimpleCppManager does not advertise "managementPolicyQueries", which
+# is a required capability for a manager. But when used as part of a
+# hybrid plugin, the capability can be satisfied by the other
+# constituent plugins(s).
+capabilities = "entityReferenceIdentification,resolution,entityTraitIntrospection"
+
+# The database of entities, as regurgitated by SimpleCppManager.
+read_traits = '''
+examplehybrid:///project_artwork/logos/openassetio,openassetio-mediacreation:usage.Entity
+examplehybrid:///project_artwork/logos/openassetio,openassetio-mediacreation:twoDimensional.Image
+examplehybrid:///project_artwork/logos/openassetio,openassetio-mediacreation:identity.DisplayName,name,The OpenAssetIO Logo
+'''
