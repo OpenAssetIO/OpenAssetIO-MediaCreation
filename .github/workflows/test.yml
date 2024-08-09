@@ -27,8 +27,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["windows-latest", "ubuntu-latest", "macos-13"]
-        python: ["3.7", "3.9", "3.10"]
+        os: ["windows-2022", "ubuntu-22.04", "macos-13"]
+        python: ["3.10", "3.11"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-openassetio
     container:
-      image: aswf/ci-vfxall:2022-clang14.3
+      image: aswf/ci-base:2024
     steps:
       - uses: actions/checkout@v3
 
@@ -67,7 +67,7 @@ jobs:
         run: cmake --build build
 
       - name: Test
-        run: ctest -VV --test-dir build/tests/cpp --parallel 2
+        run: ctest -VV --test-dir build/tests/cpp --parallel 4
 
   test-python-from-cmake:
   # To support hybrid C++ applications, the python package may also be
@@ -76,7 +76,7 @@ jobs:
     name: "Test Python From CMake"
     runs-on: ubuntu-latest
     container:
-      image: aswf/ci-vfxall:2022-clang14.3
+      image: aswf/ci-base:2024
     steps:
       - uses: actions/checkout@v3
 
@@ -104,7 +104,7 @@ jobs:
     name: Disallowed pip install
     runs-on: ubuntu-latest
     container:
-      image: aswf/ci-vfxall:2022-clang14.3
+      image: aswf/ci-base:2024
 
     steps:
       - uses: actions/checkout@v3
