@@ -10,25 +10,21 @@ concurrency:
 
 jobs:
   markdown-link-check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
     - uses: gaurav-nelson/github-action-markdown-link-check@v1
 
   cpp-linters:
     name: C++ linters
-    runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        config:
-          - os: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: 3.11
 
       # Run cmake lint on all CMakeLists.txt and .cmake files that arn't
       # in hidden directories.
