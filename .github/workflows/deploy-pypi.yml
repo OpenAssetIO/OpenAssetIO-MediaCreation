@@ -17,7 +17,7 @@ on:
 jobs:
   publish_testpypi:
     name: Publish distribution 📦 to TestPyPI
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Download wheels from commit ${{ github.sha }}
         uses: dawidd6/action-download-artifact@v2
@@ -38,7 +38,7 @@ jobs:
   publish_pypi:
     name: Publish distribution 📦 to PyPI
     needs: publish_testpypi
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Download wheels from commit ${{ github.sha }}
         uses: dawidd6/action-download-artifact@v2
