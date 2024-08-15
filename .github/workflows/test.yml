@@ -50,7 +50,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install Traitgen
-        run: python -m pip install openassetio-traitgen==1.0.0a7
+        run: python -m pip install openassetio-traitgen==1.0.0a9
 
       - name: Get OpenAssetIO
         uses: actions/download-artifact@v3
