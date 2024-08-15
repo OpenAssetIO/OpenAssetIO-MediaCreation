@@ -33,14 +33,6 @@ endif ()
 message(STATUS "Test enabled = ${OPENASSETIO_MEDIACREATION_ENABLE_TEST}")
 message(STATUS "Generate python library = ${OPENASSETIO_MEDIACREATION_GENERATE_PYTHON}")
 
-# ABI wrangling only needed for test
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
-    CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 5.0)
-    option(OPENASSETIO_MEDIACREATION_GLIBCXX_USE_CXX11_ABI "For gcc, use the new C++11 library ABI"
-           OFF)
-    message(STATUS "New C++11 ABI for GCC = ${OPENASSETIO_MEDIACREATION_GLIBCXX_USE_CXX11_ABI}")
-endif ()
-
 #-----------------------------------------------------------------------
 # Default install directory
 
