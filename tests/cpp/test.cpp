@@ -8,7 +8,7 @@
 using namespace openassetio_mediacreation;
 
 int main() {
-  auto traits = openassetio::TraitsData::make();
+  auto traits = openassetio::trait::TraitsData::make();
   auto trait = traits::managementPolicy::ManagedTrait(traits);
   trait.imbue();
   return 0;
