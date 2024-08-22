@@ -10,6 +10,11 @@ v1.0.0-alpha.x
   Python 3.7 and 3.9 builds are no longer tested or published.
   [OpenAssetIO#1351](https://github.com/OpenAssetIO/OpenAssetIO/issues/1351)
 
+- Generate Trait and Specification view classes using `v1.0.0a10` of
+  `openassetio-traitgen`, which uses `frozenset`s for the static
+  `kTraitSet` member on Specification view classes in Python.
+  [OpenAssetIO-TraitGen#55](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen/issues/55)
+
 v1.0.0-alpha.9
 ---------------
 
