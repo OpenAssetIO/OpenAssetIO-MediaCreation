@@ -18,6 +18,9 @@ jobs:
       matrix:
         os: ["windows-2022", "ubuntu-22.04", "macos-13"]
         python: ["3.10", "3.11"]
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -28,4 +31,55 @@ jobs:
           python -m pip install .
           python -m pip install -r examples/resources/requirements.txt
       - name: Test Notebooks
-        run: jupyter nbconvert --to html --execute examples/*.ipynb
+        # Execute all the notebooks apart from the Hybrid Plugin System,
+        # which requires a build of SimpleCppManager
+        run: >
+          find examples -maxdepth 1 -name "*.ipynb"
+          ! -name "hybrid_plugin_system.ipynb"
+          -exec jupyter nbconvert --to html --execute {} \;
+
+  test-cpp-notebooks:
+    # A special job just for the Hybrid Plugin System because it needs a
+    # C++ build.
+    name: Test Hybrid Plugin System notebook
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/openassetio/openassetio-build
+    env:
+      SIMPLEHYBRIDMANAGER_SUBDIR: examples/resources/hybrid_plugin_system/SimpleHybridManager
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          python -m pip install .
+          python -m pip install -r examples/resources/requirements.txt
+          python -m pip install openassetio-traitgen
+
+      - name: Build/install OpenAssetIO
+        uses: ./.github/build_openassetio
+        with:
+          install-prefix: ${{ env.SIMPLEHYBRIDMANAGER_SUBDIR }}/dependencies
+
+      - name: Build/install MediaCreation
+        run: |
+          cmake -S . -B build -G Ninja
+          cmake --build build
+          cmake --install build --prefix $SIMPLEHYBRIDMANAGER_SUBDIR/dependencies
+
+      - name: Build/install SimpleHybridManager
+        run: |
+          cmake -S src -B build -G Ninja
+          cmake --build build
+          cmake --install build --prefix plugin
+        env:
+          CMAKE_PREFIX_PATH: dependencies
+        # Since we're in a Docker container, `github.workspace` doesn't
+        # give the correct location, except, for some reason, when used
+        # in a `working-directory` option. See
+        # https://github.com/actions/runner/issues/2058#issuecomment-1541828550
+        working-directory: ${{ github.workspace }}/${{ env.SIMPLEHYBRIDMANAGER_SUBDIR }}
+
+      - name: Test notebook
+        run: jupyter nbconvert --to html --execute examples/hybrid_plugin_system.ipynb
+
+

@@ -7,6 +7,10 @@
 
 name: Build OpenAssetIO
 description: Builds OpenAssetIO and publishes an artifact
+inputs:
+  install-prefix:
+    description: Where to install OpenAssetIO once built
+    required: true
 runs:
   using: "composite"
   steps:
@@ -20,13 +24,6 @@ runs:
     - name: Build OpenAssetIO
       shell: bash
       run: |
-        cd openassetio-checkout
-        mkdir build
-        cmake -G Ninja -S . -B build
-        cmake --build build
-        cmake --install build
-    - uses: actions/upload-artifact@v3
-      with:
-        name: OpenAssetIO Build
-        path: openassetio-checkout/build/dist
-        retention-days: 1
+        cmake -G Ninja -S openassetio-checkout -B openassetio-checkout/build 
+        cmake --build openassetio-checkout/build
+        cmake --install openassetio-checkout/build --prefix ${{ inputs.install-prefix }}
