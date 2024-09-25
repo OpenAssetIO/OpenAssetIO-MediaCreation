@@ -1,0 +1,4 @@
+[manager]
+# Identifier advertised by both the C++ and Python plugins that make up
+# the hybrid manager SimpleHybridManager.
+identifier = "org.openassetio.examples.simplehybridmanager"
