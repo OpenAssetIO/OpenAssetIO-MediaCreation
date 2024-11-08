@@ -1,6 +1,17 @@
 Release Notes
 =============
 
+v1.0.0-alpha.11
+---------------
+
+### Breaking changes
+
+- Generate Trait and Specification view classes using `v1.0.0a10` of
+  `openassetio-traitgen`, which reverts the use of `frozenset`s for the
+  static `kTraitSet` member on Specification view classes in Python. The
+  `kTraitSet` member is once again a plain `set`.
+  [OpenAssetIO-TraitGen#94](https://github.com/OpenAssetIO/OpenAssetIO-TraitGen/issues/94)
+
 v1.0.0-alpha.10
 ---------------
 
