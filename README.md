@@ -79,13 +79,17 @@ python -m pip install openassetio-mediacreation
 > openassetio-traitgen`
 
 ```shell
-cmake -S . -B build
+cmake -S . -B build -DOPENASSETIO_MEDIACREATION_GENERATE_PYTHON=ON
 cmake --build build
 cmake --install build
 ```
 
 A cmake package will be created under a `dist` directory in your
 `build` directory.
+
+This will bundle the Python component alongside the C++ component. Set
+`-DOPENASSETIO_MEDIACREATION_GENERATE_PYTHON=OFF` (or omit the option)
+to install only the C++ component.
 
 ## Running the tests
 
