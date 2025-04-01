@@ -20,6 +20,12 @@ traits:
           entities.
         usage:
           - relationship
+      UI:
+        description: >
+          The trait set defines qualities of a user interface.
+        usage:
+          - ui
+
   color:
     description: Traits related to chromatic information in entity data.
     members:
@@ -67,9 +73,33 @@ traits:
             description: >
               The MIME type of the data referenced by the location
               property.
+              
+              
+              A single MIME type may be insufficient. For example,
+              `isTemplated` is true and the MIME type may vary depending
+              on the substitution; or LocatableContent is used as a
+              filter predicate where multiple types are supported.
+              
+              
+              Multiple MIME types can be represented in two ways.
+              Firstly, a wildcard may be used in place of the subtype,
+              e.g. "image/*". Secondly, multiple MIME types may be
+              separated with a comma, e.g. "image/jpeg,image/png".
+              
 
-
-              See https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+              Common references for MIME types are the IANA standard:
+              https://www.iana.org/assignments/media-types/media-types.xhtml
+              and the XDG standard (which adds e.g. "inode/directory"):
+              https://specifications.freedesktop.org/shared-mime-info-spec/latest/index.html
+              
+              
+              In addition There are several other non-standard MIME types in use in
+              the media creation industry. For example,
+              
+              
+              - "application/x-nuke" for Nuke scripts.             
+              - "application/vnd.aswf.opentimelineio" for OpenTimelineIO
+                ".otio" files.
           isTemplated:
             type: boolean
             description: >
@@ -326,6 +356,12 @@ traits:
         description: >
           A family trait that should be composed with more specific
           traits for any entity that holds two-dimensional data.
+        usage:
+          - entity
+      ImageCollection:
+        description: >
+          A family trait for any entity that is not an image itself but
+          is a collection of one or more images.
         usage:
           - entity
       PixelBased:
@@ -587,6 +623,106 @@ traits:
         description: >
           Audio that is encoded in a series of discrete time samples,
           for some number of channels.
+
+  ui:
+    description: Traits related to UI delegation
+    members:
+      EntityProvider:
+        description: >
+          State updates from the UI element should include one or more
+          entity references.
+        usage:
+          - ui
+      MetadataProvider:
+        description: >
+          State updates from the UI element should include one or more
+          traits, with all appropriate properties filled.
+        usage:
+          - ui
+      EntityInfo:
+        description: >
+          The UI element should display relevant information about one
+          or more entities.
+          
+          
+          When choosing which information to display, take into account
+          
+          
+          - Context locale (e.g. any application-specific traits).
+          - Access mode (e.g. read vs. write).
+          - Available area (e.g. if Inline trait is also imbued).
+        usage:
+          - ui
+      Browser:
+        description: >
+          The UI element supports choosing a subset of resources from a
+          set of candidate resources.
+        usage:
+          - ui
+      Singular:
+        description: >
+          The UI element is associated with a single entity.
+        usage:
+          - ui
+      OneShot:
+        description: >
+          The first state update from the UI element will be used by the
+          host and all subsequent updates will be ignored. The host may
+          destroy the UI element after this initial update.
+        usage:
+          - ui
+      InPlace:
+        description: >
+          The initial state provided to the UI delegate includes a 
+          container UI element that should be mutated by the delegate.
+        usage:
+          - ui
+      Detached:
+        description: >
+          A new UI element should be emitted in the state object, not
+          yet attached to the UI hierarchy. The host is responsible for
+          attaching the UI element.
+        usage:
+          - ui
+      Inline:
+        description: >
+          The UI element will be placed alongside other elements in a
+          layout of related elements. The UI element should be simple
+          and compact, assuming limited available screen space.
+        usage:
+          - ui
+      Tabbed:
+        description: >
+          The UI element should be a new tab in a tabbed panel.
+        usage:
+          - ui
+  uiPolicy:
+    description: Policy traits related to UI delegation
+    members:
+      Managed:
+        description: >
+          A trait indicating that a UI element can be delegated if it
+          matches the supplied traits, taking into account context and
+          access mode.
+        usage:
+          - uiPolicy
+        properties:
+          exclusive:
+            type: boolean
+            description: >
+              Determines if the manager exclusively handles data matching
+              the supplied trait set.
+
+
+              If True, then standard host controls should be disabled
+              in favour of manager delegated UI. For example, file system
+              browsers when determining where to load/save data.
+
+
+              If False, then standard host controls can be presented in
+              addition to any custom manager UI.
+
+
 specifications:
   audio:
     description: >
@@ -767,6 +903,39 @@ specifications:
             name: Image
           - namespace: twoDimensional
             name: PixelBased
+          - namespace: content
+            name: LocatableContent
+      BitmapImageResourceCollection:
+        description: >
+          An entity that holds a collection of bitmap image resources
+          in some external resource.
+        usage:
+          - entity
+        traitSet:
+          - namespace: usage
+            name: Entity
+          - namespace: twoDimensional
+            name: ImageCollection
+          - namespace: twoDimensional
+            name: PixelBased
+          - namespace: content
+            name: LocatableContent
+      BitmapImageResourceSequence:
+        description: >
+          An entity that holds a collection of image resources, where
+          those image resources are ordered into a bounded list of 
+          frames.
+        usage:
+          - entity
+        traitSet:
+          - namespace: usage
+            name: Entity
+          - namespace: twoDimensional
+            name: ImageCollection
+          - namespace: twoDimensional
+            name: PixelBased
+          - namespace: timeDomain
+            name: FrameRanged
           - namespace: content
             name: LocatableContent
       PlanarBitmapImageResource:
