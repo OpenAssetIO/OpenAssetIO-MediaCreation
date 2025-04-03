@@ -34,9 +34,11 @@ jobs:
         # Execute all the notebooks apart from the Hybrid Plugin System,
         # which requires a build of SimpleCppManager
         run: >
-          find examples -maxdepth 1 -name "*.ipynb"
-          ! -name "hybrid_plugin_system.ipynb"
-          -exec jupyter nbconvert --to html --execute {} \;
+          for notebook in examples/*.ipynb; do
+              [[ "$notebook" == *"hybrid_plugin_system.ipynb" ]] && continue
+              echo "Executing $notebook..."
+              jupyter nbconvert --to html --execute "$notebook"
+          done
 
   test-cpp-notebooks:
     # A special job just for the Hybrid Plugin System because it needs a
