@@ -1,6 +1,20 @@
 Release Notes
 =============
 
+v1.0.0-alpha.x
+---------------
+
+## New features
+
+- Added first tranche of UI-specific traits for common kinds of UI
+  delegation requests.
+  [OpenAssetIO#1302](https://github.com/OpenAssetIO/OpenAssetIO/issues/1302)
+ 
+- Added better support for file and image collections by expanding
+  allowed values in `LocatableContent.mimeType` and adding a new
+  `ImageCollection` trait and associated specifications.
+  [OpenAssetIO#1302](https://github.com/OpenAssetIO/OpenAssetIO/issues/1302)
+
 v1.0.0-alpha.11
 ---------------
 
