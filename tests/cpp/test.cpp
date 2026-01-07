@@ -9,7 +9,8 @@ using namespace openassetio_mediacreation;
 
 int main() {
   auto traits = openassetio::trait::TraitsData::make();
-  auto trait = traits::managementPolicy::ManagedTrait(traits);
+  auto deprecated = traits::managementPolicy::ManagedTrait(traits);
+  auto trait = traits::managementPolicy::ManagedTrait_v1(traits);
   trait.imbue();
   return 0;
 }

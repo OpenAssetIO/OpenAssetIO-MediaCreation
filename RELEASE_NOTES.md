@@ -1,6 +1,16 @@
 Release Notes
 =============
 
+v1.0.0-alpha.x
+---------------
+
+### Breaking changes
+
+- Update the traits YAML to be compatible with the new schema defined in
+  `openassetio-traitgen` v1.0.0-alpha.13+, which adds versioning to
+  traits and specifications.
+  [#98](https://github.com/OpenAssetIO/OpenAssetIO-MediaCreation/issues/98)
+
 v1.0.0-alpha.12
 ---------------
 
