@@ -7,7 +7,8 @@
                 "dev": true
             },
             "cacheVariables": {
-                "OPENASSETIO_MEDIACREATION_ENABLE_TEST": "ON"
+                "OPENASSETIO_MEDIACREATION_ENABLE_TEST": "ON",
+                "OPENASSETIO_MEDIACREATION_GENERATE_PYTHON": "ON"
             }
         }
     ]
