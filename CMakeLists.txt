@@ -65,14 +65,28 @@ endif ()
 # to the library structure later on will encounter issues caused by the
 # generative nature of the project.
 message("Generating Traits with openassetio-traitgen")
+
+# Locate the openassetio-traitgen executable. This allows the user to
+# override which traitgen is used via CMake mechanisms, e.g.
+# CMAKE_PREFIX_PATH, or by directly setting
+# OPENASSETIO_TRAITGEN_EXECUTABLE.
+find_program(
+    OPENASSETIO_TRAITGEN_EXECUTABLE
+    NAMES openassetio-traitgen
+    REQUIRED
+)
+message(STATUS "Found openassetio-traitgen at: ${OPENASSETIO_TRAITGEN_EXECUTABLE}")
+
 # Mark the traits source as a configure dependency by copying it to the
 # binary dir, and use that file to run traitgen from.
 # This means if the source traits file is changed, configure will rerun.
 configure_file(${CMAKE_CURRENT_LIST_DIR}/traits.yml ${PROJECT_BINARY_DIR}/traits.yml)
-execute_process(COMMAND openassetio-traitgen ${PROJECT_BINARY_DIR}/traits.yml
-                    -o ${PROJECT_BINARY_DIR}/cpp -g cpp
-                    COMMAND_ERROR_IS_FATAL ANY
-                    COMMAND_ECHO STDERR)
+execute_process(
+    COMMAND ${OPENASSETIO_TRAITGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/traits.yml
+    -o ${PROJECT_BINARY_DIR}/cpp -g cpp
+    COMMAND_ERROR_IS_FATAL ANY
+    COMMAND_ECHO STDERR
+)
 
 if (OPENASSETIO_MEDIACREATION_GENERATE_PYTHON)
     # Generate the python package by running traitgen.
@@ -87,10 +101,12 @@ if (OPENASSETIO_MEDIACREATION_GENERATE_PYTHON)
     # `pip install .` (and invoking setup.py), but that's not a
     # guarentee going forward, as additional elements of the python
     # package may be added to mediacreation.
-    execute_process(COMMAND openassetio-traitgen ${PROJECT_BINARY_DIR}/traits.yml
+    execute_process(
+        COMMAND ${OPENASSETIO_TRAITGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/traits.yml
         -o ${PROJECT_BINARY_DIR}/python -g python
         COMMAND_ERROR_IS_FATAL ANY
-        COMMAND_ECHO STDERR)
+        COMMAND_ECHO STDERR
+    )
 endif()
 
 add_library(openassetio-mediacreation INTERFACE)
