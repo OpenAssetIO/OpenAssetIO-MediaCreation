@@ -55,7 +55,8 @@ jobs:
         run: |
           python -m pip install .
           python -m pip install -r examples/resources/requirements.txt
-          python -m pip install openassetio-traitgen
+          # TODO(DF): Revert to PyPI when v1.0.0-alpha.13+ available
+          python -m pip install git+https://github.com/OpenAssetIO/OpenAssetIO-TraitGen.git
 
       - name: Build/install OpenAssetIO
         uses: ./.github/build_openassetio

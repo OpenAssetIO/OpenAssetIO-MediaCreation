@@ -44,7 +44,8 @@ jobs:
           install-prefix: openassetio
 
       - name: Install Traitgen
-        run: python -m pip install openassetio-traitgen
+        # TODO(DF): Revert to PyPI when v1.0.0-alpha.13+ available
+        run: python -m pip install git+https://github.com/OpenAssetIO/OpenAssetIO-TraitGen.git
 
       - name: Configure CMake build
         run: |
@@ -68,7 +69,8 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install Traitgen
-        run: python -m pip install openassetio-traitgen
+        # TODO(DF): Revert to PyPI when v1.0.0-alpha.13+ available
+        run: python -m pip install git+https://github.com/OpenAssetIO/OpenAssetIO-TraitGen.git
 
       - name: Configure CMake build
         run: >
@@ -97,7 +99,8 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install Traitgen
-        run: python -m pip install openassetio-traitgen
+        # TODO(DF): Revert to PyPI when v1.0.0-alpha.13+ available
+        run: python -m pip install git+https://github.com/OpenAssetIO/OpenAssetIO-TraitGen.git
 
       - name: Set Python Root Dir
         run: echo "Python_ROOT_DIR=$(python -c 'import sys; print(sys.prefix)')" >> $GITHUB_ENV
