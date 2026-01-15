@@ -46,6 +46,9 @@ jobs:
       - name: Install Traitgen
         run: python -m pip install openassetio-traitgen
 
+      - name: Install Python test dependencies
+        run: python -m pip install -r tests/python/requirements.txt
+
       - name: Configure CMake build
         run: |
           cmake -S . -DCMAKE_PREFIX_PATH=$(pwd)/openassetio -B build -G Ninja --preset test
