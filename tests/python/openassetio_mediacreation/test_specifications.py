@@ -46,7 +46,7 @@ class Test_specification_traits:
         """
         for cls in self.__specifications():
             if RelationshipTrait.kId in cls.kTraitSet:
-                assert cls.__name__.endswith("RelationshipSpecification")
+                assert cls.__name__.endswith("RelationshipSpecification_v1")
 
     def __specifications(self):
         """
@@ -57,7 +57,7 @@ class Test_specification_traits:
         for _, namespace in namespaces:
             classes = inspect.getmembers(namespace, inspect.isclass)
             for _, cls in classes:
-                if cls.__name__.endswith("Specification"):
+                if cls.__name__.endswith("Specification_v1"):
                     specs.append(cls)
         assert specs
         return specs
