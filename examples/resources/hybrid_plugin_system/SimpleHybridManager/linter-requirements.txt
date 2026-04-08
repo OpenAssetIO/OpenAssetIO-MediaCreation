@@ -1,5 +1,5 @@
 # Python auto-formatter.
-black==24.8.0
+black==26.3.1
 # Python linter.
 pylint==3.2.7
 # pflake8 - flake8 PEP8 linter with settings from pyproject.toml.
