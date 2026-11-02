@@ -1,7 +1,7 @@
 # Python auto-formatter.
 black==26.10.1
 # Python linter.
-pylint==3.2.7
+pylint==4.0.9
 # pflake8 - flake8 PEP8 linter with settings from pyproject.toml.
 pyproject-flake8==7.0.0
 # CMake linter.
