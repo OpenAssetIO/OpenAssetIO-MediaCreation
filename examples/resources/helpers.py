@@ -2,7 +2,8 @@ import os
 
 from IPython.display import display, display_markdown
 from PIL import Image
-import urllib
+import urllib.parse
+import urllib.request
 
 
 def display_result(result):
