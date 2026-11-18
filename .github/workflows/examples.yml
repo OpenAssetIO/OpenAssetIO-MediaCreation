@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2023 The Foundry Visionmongers Ltd
+# Copyright 2023-2026 The Foundry Visionmongers Ltd
 
 name: Examples
 on:
@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["windows-2022", "ubuntu-22.04", "macos-15-intel"]
+        os: ["windows-2022", "ubuntu-22.04", "macos-latest"]
         python: ["3.10", "3.11"]
     defaults:
       run:
